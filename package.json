@@ -1,6 +1,6 @@
 {
   "name": "tool-client",
-  "version": "0.0.1-beta.2",
+  "version": "0.0.1",
   "private": true,
   "packageManager": "pnpm@7.8.0",
   "description": "自用工具箱UI",
