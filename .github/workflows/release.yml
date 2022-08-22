@@ -12,6 +12,7 @@ on:
 
 jobs:
   release:
+    name: 编译 | 发布
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     strategy:
