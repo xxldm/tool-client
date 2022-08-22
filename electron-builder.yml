@@ -4,8 +4,6 @@ directories:
   output: release
 files:
   - dist
-publish:
-  provider: github
 win:
   target:
     - target: nsis
