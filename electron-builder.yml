@@ -1,4 +1,3 @@
-# @see https://www.electron.build/configuration/configuration
 appId: xxldm.vitesse.electron
 asar: true
 directories:

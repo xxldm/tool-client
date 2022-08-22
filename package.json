@@ -1,10 +1,13 @@
 {
-  "name": "vitesse-electron",
+  "name": "tool-client",
   "version": "0.0.0",
   "private": true,
   "packageManager": "pnpm@7.8.0",
-  "description": "自用electron模板",
-  "author": { "name": "xxldm", "url": "https://github.com/xxldm" },
+  "description": "自用工具箱UI",
+  "author": {
+    "name": "xxldm",
+    "url": "https://github.com/xxldm"
+  },
   "main": "dist/electron/main/index.js",
   "engines": {
     "node": ">=14.17.0"
@@ -48,11 +51,11 @@
     "eslint": "^8.22.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "jsdom": "^20.0.0",
-    "pnpm": "^7.8.0",
+    "pnpm": "^7.9.3",
     "sass": "^1.54.5",
     "taze": "^0.7.6",
     "typescript": "^4.7.4",
-    "unocss": "^0.45.8",
+    "unocss": "^0.45.12",
     "unplugin-auto-import": "^0.11.2",
     "unplugin-vue-components": "^0.22.4",
     "vite": "^3.0.9",

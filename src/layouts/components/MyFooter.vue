@@ -20,7 +20,7 @@
 
     <el-link
       i-carbon-logo-github text-2xl rel="noopener noreferrer"
-      href="https://github.com/xxldm/vitesse"
+      href="https://github.com/xxldm/tool-client"
       target="_blank"
       title="GitHub"
     />
