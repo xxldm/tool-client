@@ -6,21 +6,18 @@ on:
       - main
     tags:
       - 'v*'
-
   pull_request:
     branches:
       - main
 
 jobs:
   build:
+    name: 编译 | 发布
     runs-on: ${{ matrix.os }}
-
     timeout-minutes: 10
-
     strategy:
       matrix:
         os: [windows-latest]
-
     steps:
       - name: 检出代码
         uses: actions/checkout@v3
