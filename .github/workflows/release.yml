@@ -1,4 +1,4 @@
-name: Release
+name: release
 
 on:
   push:
@@ -11,8 +11,7 @@ on:
       - main
 
 jobs:
-  build:
-    name: 编译 | 发布
+  release:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     strategy:
