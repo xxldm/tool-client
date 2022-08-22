@@ -2,12 +2,15 @@ name: release
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   release:
-    name: 发布
+    name: 编译
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     strategy:
@@ -32,7 +35,7 @@ jobs:
       - name: 执行测试
         run: pnpm run test
 
-      - name: 发布
-        run: pnpm run build -p always
+      - name: 编译
+        run: pnpm run build
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
