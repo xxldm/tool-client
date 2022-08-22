@@ -22,27 +22,25 @@ jobs:
         os: [windows-latest]
 
     steps:
-      - uses: actions/checkout@v3
+      - name: 检出代码
+        uses: actions/checkout@v3
 
-      - uses: pnpm/action-setup@v2
+      - name: 初始化pnpm环境
+        uses: pnpm/action-setup@v2
 
-      - uses: actions/setup-node@v3
-        with:
-          cache: pnpm
-
-      - name: Install
+      - name: 安装依赖
         run: pnpm i
 
-      - name: Lint
+      - name: esLint 检查
         run: pnpm run lint
 
-      - name: TypeCheck
+      - name: typescript 检查
         run: pnpm run typecheck
 
-      - name: Test
+      - name: 执行测试
         run: pnpm run test
 
-      - name: Build
+      - name: 编译 | 发布
         run: pnpm run build
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
