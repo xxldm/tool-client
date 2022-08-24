@@ -24,15 +24,20 @@ jobs:
         run: pnpm i
 
       - name: esLint 检查
-        run: pnpm run lint
+        run: pnpm lint
 
       - name: typescript 检查
-        run: pnpm run typecheck
+        run: pnpm typecheck
 
       - name: 执行测试
-        run: pnpm run test
+        run: pnpm test
 
-      - name: 发布
-        run: pnpm run build -p always
+      - name: 创建 github release, 生成 release describe
+        run: pnpm release:make:github
+        env:
+          CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: 编译 & 发布
+        run: pnpm build -p always
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
