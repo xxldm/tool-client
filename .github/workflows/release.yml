@@ -35,8 +35,7 @@ jobs:
       - name: 创建 github release, 生成 release describe
         run: pnpm release:make:github
         env:
-          CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          DEBUG: conventional-github-releaser
+          CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{secrets.TEST_KEY}}
 
       - name: 编译 & 发布
         run: pnpm build
