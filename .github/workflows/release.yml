@@ -35,6 +35,8 @@ jobs:
       - name: 创建 github release, 生成 release describe
         id: release
         uses: google-github-actions/release-please-action@v3
+        with:
+          release-type: node
 
       - name: 编译 & 发布
         run: pnpm build
