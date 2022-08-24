@@ -1,3 +1,13 @@
+<a name="0.0.4-beta.2"></a>
+## [0.0.4-beta.2](https://github.com/xxldm/tool-client/compare/v0.0.4-beta.1...v0.0.4-beta.2) (2022-08-24)
+
+
+### Features
+
+* 测试 release describe ([12589de](https://github.com/xxldm/tool-client/commit/12589de))
+
+
+
 <a name="0.0.4-beta.1"></a>
 ## [0.0.4-beta.1](https://github.com/xxldm/tool-client/compare/v0.0.4-beta.0...v0.0.4-beta.1) (2022-08-24)
 
