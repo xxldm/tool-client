@@ -38,6 +38,6 @@ jobs:
           CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: 编译 & 发布
-        run: pnpm build -p always
+        run: pnpm build
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
