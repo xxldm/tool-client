@@ -7,6 +7,14 @@
 
 
 
+## [0.1.0-beta.4](https://github.com/xxldm/tool-client/compare/v0.0.4-beta.4...v0.1.0-beta.4) (2022-08-24)
+
+
+### Features
+
+* 测试 release describe 4 ([e45ec6d](https://github.com/xxldm/tool-client/commit/e45ec6d6d3f288ebf92a35dc86aeb0c1e352aa75))
+* 测试 release describe 6 ([017d685](https://github.com/xxldm/tool-client/commit/017d68590345194a91c52391a6629be247241284))
+
 ## [0.0.4-beta.6](https://github.com/xxldm/tool-client/compare/v0.0.4-beta.5...v0.0.4-beta.6) (2022-08-24)
 
 
@@ -87,6 +95,3 @@
 ### Features
 
 * 测试 changelog ([7743678](https://github.com/xxldm/tool-client/commit/7743678))
-
-
-
