@@ -36,7 +36,10 @@ jobs:
         id: release
         uses: google-github-actions/release-please-action@v3
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           release-type: node
+          package-name: ${{env.ACTION_NAME}}
+          command: github-release
 
       - name: 编译 & 发布
         run: pnpm build
