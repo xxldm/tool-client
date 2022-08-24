@@ -24,8 +24,7 @@
     "lint": "eslint .",
     "test": "vitest",
     "up": "taze major -I",
-    "tag": "bumpp --execute \"conventional-changelog -p angular -i CHANGELOG.md -s\" --all",
-    "release:make:github": "conventional-github-releaser -p angular -v"
+    "tag": "bumpp --execute \"conventional-changelog -p angular -i CHANGELOG.md -s\" --all"
   },
   "dependencies": {
     "@vueuse/core": "^9.1.0",
@@ -50,7 +49,6 @@
     "@vue/tsconfig": "^0.1.3",
     "bumpp": "^8.2.1",
     "conventional-changelog-cli": "^2.2.2",
-    "conventional-github-releaser": "^3.1.5",
     "electron": "^20.0.3",
     "electron-builder": "^23.3.3",
     "eslint": "^8.22.0",

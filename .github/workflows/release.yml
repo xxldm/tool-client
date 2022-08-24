@@ -33,9 +33,10 @@ jobs:
         run: pnpm test
 
       - name: 创建 github release, 生成 release describe
-        run: pnpm release:make:github
-        env:
-          CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{secrets.TEST_KEY}}
+        uses: google-github-actions/release-please-action@v3
+        with:
+          release-type: node
+          command: github-release
 
       - name: 编译 & 发布
         run: pnpm build
