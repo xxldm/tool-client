@@ -1,3 +1,8 @@
+<a name="0.0.4-beta.3"></a>
+## [0.0.4-beta.3](https://github.com/xxldm/tool-client/compare/v0.0.4-beta.2...v0.0.4-beta.3) (2022-08-24)
+
+
+
 <a name="0.0.4-beta.2"></a>
 ## [0.0.4-beta.2](https://github.com/xxldm/tool-client/compare/v0.0.4-beta.1...v0.0.4-beta.2) (2022-08-24)
 
