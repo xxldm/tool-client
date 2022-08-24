@@ -1,6 +1,6 @@
 {
   "name": "tool-client",
-  "version": "0.0.4-beta.0",
+  "version": "0.0.4-beta.1",
   "private": true,
   "packageManager": "pnpm@7.8.0",
   "description": "自用工具箱UI",
@@ -24,7 +24,7 @@
     "lint": "eslint .",
     "test": "vitest",
     "up": "taze major -I",
-    "tag": "bumpp --execute \"conventional-changelog -p angular -i CHANGELOG.md -s\" package.json package-lock.json CHANGELOG.md",
+    "tag": "bumpp --execute \"conventional-changelog -p angular -i CHANGELOG.md -s\" --all",
     "release:make:github": "conventional-github-releaser -p angular"
   },
   "dependencies": {
