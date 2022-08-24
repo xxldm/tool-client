@@ -25,7 +25,7 @@
     "test": "vitest",
     "up": "taze major -I",
     "tag": "bumpp --execute \"conventional-changelog -p angular -i CHANGELOG.md -s\" --all",
-    "release:make:github": "conventional-github-releaser -p angular"
+    "release:make:github": "conventional-github-releaser -p angular -i CHANGELOG.md -s"
   },
   "dependencies": {
     "@vueuse/core": "^9.1.0",
