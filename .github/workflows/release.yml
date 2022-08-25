@@ -52,6 +52,5 @@ jobs:
 
       - name: 编译 & 发布
         run: nr build
-        if: ${{ steps.release.outputs.release_created }}
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
