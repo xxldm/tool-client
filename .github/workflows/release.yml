@@ -40,7 +40,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ github.workspace }}/.cache/electron
-          key: ${{ runner.os }}-electron-cache-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          key: ${{ runner.os }}-electron-cache-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-electron-cache-
 
@@ -48,7 +48,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ github.workspace }}/.cache/electron-builder
-          key: ${{ runner.os }}-electron-builder-cache-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          key: ${{ runner.os }}-electron-builder-cache-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-electron-builder-cache-
 
