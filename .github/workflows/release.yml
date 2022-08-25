@@ -22,32 +22,34 @@ jobs:
         with:
           version: 7.8.0
 
-      - uses: actions/setup-node@v3
+      - name: 初始化 pnpm 缓存
+        uses: actions/setup-node@v3
         with:
           node-version: 14
           cache: pnpm
 
+      - name: 安装 ni
+        run: npm i -g @antfu/ni
+
       - name: 安装依赖
-        run: pnpm i --frozen-lockfile
+        run: nci
 
       - name: esLint 检查
-        run: pnpm lint
+        run: nr lint
 
       - name: typescript 检查
-        run: pnpm typecheck
+        run: nr typecheck
 
       - name: 执行测试
-        run: pnpm test
+        run: nr test
 
-      - name: 创建 github release, 生成 release describe
-        id: release
-        uses: google-github-actions/release-please-action@v3
-        with:
-          release-type: node
-          command: github-release
+      - name: 创建 github release, 生成 release 内容
+        run: nx changelogithub
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: 编译 & 发布
-        run: pnpm build
+        run: nr build
         if: ${{ steps.release.outputs.release_created }}
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
