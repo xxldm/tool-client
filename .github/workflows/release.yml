@@ -15,9 +15,6 @@ jobs:
         os: [windows-latest]
         node-version: [14]
         pnpm-version: [7]
-    env:
-      ELECTRON_CACHE: ${{ github.workspace }}/.cache/electron
-      ELECTRON_BUILDER_CACHE: ${{ github.workspace }}/.cache/electron-builder
     steps:
       - name: 检出代码
         uses: actions/checkout@v3
@@ -28,29 +25,11 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: ${{ matrix.pnpm-version }}
-          run_install: false
 
-      - name: 初始化 node, 缓存 pnpm
+      - name: 初始化 node
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: pnpm
-
-      - name: 缓存 Electron
-        uses: actions/cache@v3
-        with:
-          path: ${{ github.workspace }}/.cache/electron
-          key: ${{ runner.os }}-electron-cache-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-electron-cache-
-
-      - name: 缓存 Electron-Builder
-        uses: actions/cache@v3
-        with:
-          path: ${{ github.workspace }}/.cache/electron-builder
-          key: ${{ runner.os }}-electron-builder-cache-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-electron-builder-cache-
 
       - name: 安装 ni
         run: npm i -g @antfu/ni
