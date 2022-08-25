@@ -52,20 +52,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-electron-builder-cache-
 
-      - name: 安装 ni
-        run: npm i -g @antfu/ni
-
       - name: 安装依赖
-        run: nci
+        run: pnpm install --frozen-lockfile
 
       - name: esLint 检查
-        run: nr lint
+        run: pnpm run lint
 
       - name: typescript 检查
-        run: nr typecheck
+        run: pnpm run typecheck
 
       - name: 执行测试
-        run: nr test
+        run: pnpm run test
 
       - name: 编译
-        run: nr build:dir
+        run: pnpm run build:dir

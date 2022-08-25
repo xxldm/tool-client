@@ -31,27 +31,24 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: 安装 ni
-        run: npm i -g @antfu/ni
-
       - name: 安装依赖
-        run: nci
+        run: pnpm install
 
       - name: esLint 检查
-        run: nr lint
+        run: pnpm run lint
 
       - name: typescript 检查
-        run: nr typecheck
+        run: pnpm run typecheck
 
       - name: 执行测试
-        run: nr test
+        run: pnpm run test
 
       - name: 创建 github release, 生成 release 内容
-        run: nx changelogithub
+        run: pnpm dlx changelogithub
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: 编译 & 发布
-        run: nr build
+        run: pnpm run build
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
