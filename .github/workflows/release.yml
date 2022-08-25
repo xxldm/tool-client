@@ -35,7 +35,7 @@ jobs:
         run: npm i -g @antfu/ni
 
       - name: 安装依赖
-        run: ni
+        run: nci
 
       - name: esLint 检查
         run: nr lint
