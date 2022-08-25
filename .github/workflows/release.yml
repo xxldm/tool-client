@@ -19,16 +19,29 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 初始化 pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 7.8.0
-
-      - name: 初始化 pnpm 缓存
+      - name: 初始化 node
         uses: actions/setup-node@v3
         with:
           node-version: 14
-          cache: pnpm
+
+      - name: 初始化 pnpm
+        uses: pnpm/action-setup@v2
+        id: pnpm-install
+        with:
+          version: 7.8.0
+
+      - name: 获取 pnpm store 目录
+        id: pnpm-cache
+        run: |
+          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+
+      - name: 设置 pnpm 缓存
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
 
       - name: 安装 ni
         run: npm i -g @antfu/ni
