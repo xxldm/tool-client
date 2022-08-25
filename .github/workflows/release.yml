@@ -26,9 +26,9 @@ jobs:
 
       - name: 初始化 pnpm
         uses: pnpm/action-setup@v2
-        id: pnpm-install
         with:
-          version: 7.8.0
+          version: 7
+          run_install: false
 
       - name: 获取 pnpm store 目录
         id: pnpm-cache
