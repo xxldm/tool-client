@@ -15,9 +15,9 @@ rules:
   '@typescript-eslint/quotes': [error, double]
   # 导入排序
   simple-import-sort/imports: error
+  no-multiple-empty-lines: error
   # 关闭默认的导入排序
   sort-imports: off
   import/order: off
   # 常量被修改 ($ref这种会被误报)
   no-const-assign: off
-
