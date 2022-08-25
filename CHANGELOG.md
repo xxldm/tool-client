@@ -1,3 +1,7 @@
+## [0.0.4-beta.11](https://github.com/xxldm/tool-client/compare/v0.0.4-beta.10...v0.0.4-beta.11) (2022-08-25)
+
+
+
 ## [0.0.4-beta.10](https://github.com/xxldm/tool-client/compare/v0.0.4-beta.9...v0.0.4-beta.10) (2022-08-25)
 
 
