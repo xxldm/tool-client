@@ -1,6 +1,6 @@
 {
   "name": "tool-client",
-  "version": "0.0.1-beta.0",
+  "version": "0.0.1-beta.1",
   "private": true,
   "packageManager": "pnpm@7.8.0",
   "description": "自用工具箱UI",
@@ -24,7 +24,7 @@
     "lint": "eslint .",
     "test": "vitest",
     "up": "taze major -I",
-    "tag": "bumpp --execute \"conventional-changelog -p angular -i CHANGELOG.md -s\" --all"
+    "tag": "bumpp --execute \"conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md\" --all"
   },
   "dependencies": {
     "@vueuse/core": "^9.1.0",
