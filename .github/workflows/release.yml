@@ -13,35 +13,44 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest]
+        node-version: [14]
+        pnpm-version: [7]
+    env:
+      ELECTRON_CACHE: ${{ github.workspace }}/.cache/electron
+      ELECTRON_BUILDER_CACHE: ${{ github.workspace }}/.cache/electron-builder
     steps:
       - name: 检出代码
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: 初始化 node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 14
-
       - name: 初始化 pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 7
+          version: ${{ matrix.pnpm-version }}
           run_install: false
 
-      - name: 获取 pnpm store 目录
-        id: pnpm-cache
-        run: |
-          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+      - name: 初始化 node, 缓存 pnpm
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
 
-      - name: 设置 pnpm 缓存
+      - name: 缓存 Electron
         uses: actions/cache@v3
         with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          path: ${{ github.workspace }}/.cache/electron
+          key: ${{ runner.os }}-electron-cache-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
           restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+            ${{ runner.os }}-electron-cache-
+
+      - name: 缓存 Electron-Builder
+        uses: actions/cache@v3
+        with:
+          path: ${{ github.workspace }}/.cache/electron-builder
+          key: ${{ runner.os }}-electron-builder-cache-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          restore-keys: |
+            ${{ runner.os }}-electron-builder-cache-
 
       - name: 安装 ni
         run: npm i -g @antfu/ni
