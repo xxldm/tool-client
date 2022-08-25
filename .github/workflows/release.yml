@@ -17,11 +17,18 @@ jobs:
       - name: 检出代码
         uses: actions/checkout@v3
 
-      - name: 初始化pnpm环境
+      - name: 初始化 pnpm
         uses: pnpm/action-setup@v2
+        with:
+          version: 7.8.0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          cache: pnpm
 
       - name: 安装依赖
-        run: pnpm i
+        run: pnpm i --frozen-lockfile
 
       - name: esLint 检查
         run: pnpm lint
@@ -36,9 +43,7 @@ jobs:
         id: release
         uses: google-github-actions/release-please-action@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           release-type: node
-          package-name: ${{env.ACTION_NAME}}
           command: github-release
 
       - name: 编译 & 发布
