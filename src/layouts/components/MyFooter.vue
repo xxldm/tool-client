@@ -8,7 +8,7 @@
       </template>
       <template #default>
         <div flex="~ col">
-          <el-button v-for="locale in locales" :key="locale.locale" text m="l-0!" :disabled="disabled(locale.locale)" @click="changeLocale(locale.locale)">
+          <el-button v-for="locale in supportLocales" :key="locale.locale" text m="l-0!" :disabled="disabled(locale.locale)" @click="setLocale(locale.locale)">
             <div v-show="disabled(locale.locale)" i-carbon-checkmark m-r-1 />
             {{ locale.name }}
           </el-button>
@@ -28,17 +28,6 @@
 </template>
 
 <script lang="ts" setup>
-const locales = [{
-  name: "简体中文",
-  locale: "zh-cn",
-}, {
-  name: "English",
-  locale: "en",
-}];
-const i18n = useI18n({ useScope: "global" });
+import { setLocale, supportLocales } from "~/modules/i18n";
 const disabled = (locale: string) => useLocaleStore().locale === locale;
-const changeLocale = (locale: string) => {
-  useLocaleStore().locale = locale;
-  i18n.locale.value = locale;
-};
 </script>

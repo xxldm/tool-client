@@ -132,7 +132,7 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
       VueI18n({
         runtimeOnly: true,
         compositionOnly: true,
-        include: [resolve(__dirname, "locales/**")],
+        include: [resolve(__dirname, "src/locales/**")],
       }),
     ],
     // https://github.com/vitest-dev/vitest
