@@ -8,11 +8,6 @@
     "*.css": "css"
   },
   "editor.formatOnSave": false,
-  "i18n-ally.localesPaths": [
-    "locales"
-  ],
-  "i18n-ally.keystyle": "nested",
-  "i18n-ally.extract.autoDetect": true,
   "yaml.schemas": {
     "https://json.schemastore.org/electron-builder": [
       "electron-builder.yml",
@@ -20,5 +15,15 @@
       "file:///d%3A/Project/tool-client/electron-builder.yml"
     ],
     "https://json.schemastore.org/eslintrc.json": "file:///d%3A/Project/tool-client/.eslintrc.yaml"
-  }
+  },
+  "i18n-ally.extract.ignoredByFiles": {
+    "src\\modules\\i18n.ts": [
+      "中文",
+      "English"
+    ]
+  },
+  "i18n-ally.localesPaths": [
+    "src/locales"
+  ],
+  "i18n-ally.keystyle": "nested"
 }

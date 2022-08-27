@@ -1,0 +1,20 @@
+{
+  "appName": "toolbox",
+  "date": {
+    "unit": {
+      "day": "sky",
+      "hour": "Hour",
+      "minute": "Minute",
+      "month": "moon",
+      "second": "second",
+      "year": "year"
+    }
+  },
+  "error": {
+    "PageNotFound": "page lost"
+  },
+  "menu": {
+    "goMain": "Home",
+    "main": "front page"
+  }
+}

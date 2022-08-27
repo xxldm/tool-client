@@ -1,0 +1,20 @@
+{
+  "appName": "工具箱",
+  "date": {
+    "unit": {
+      "day": "天",
+      "hour": "小时",
+      "minute": "分",
+      "month": "月",
+      "second": "秒",
+      "year": "年"
+    }
+  },
+  "error": {
+    "PageNotFound": "页面走丢了"
+  },
+  "menu": {
+    "goMain": "回首页",
+    "main": "首页"
+  }
+}
