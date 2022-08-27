@@ -1,7 +1,11 @@
 <template>
   <el-result :title="t('error.PageNotFound')">
     <template #icon>
-      <img w-80 h-80 src="/NotFound.jpg">
+      <img
+        w-80
+        h-80
+        src="/NotFound.jpg"
+      >
     </template>
     <template #extra>
       <router-link to="/">

@@ -1,5 +1,9 @@
 <template>
-  <el-menu mode="horizontal" router :default-active="defaultActive">
+  <el-menu
+    mode="horizontal"
+    router
+    :default-active="defaultActive"
+  >
     <el-menu-item
       v-for="route in useRouterStore().routes_menu"
       :key="route.path"

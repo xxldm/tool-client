@@ -15,7 +15,14 @@ rules:
   '@typescript-eslint/quotes': [error, double]
   # 导入排序
   simple-import-sort/imports: error
+  # 连续多个空行
   no-multiple-empty-lines: error
+  vue/max-attributes-per-line:
+    - error
+    - singleline:
+        max: 1
+      multiline:
+        max: 1
   # 关闭默认的导入排序
   sort-imports: off
   import/order: off
