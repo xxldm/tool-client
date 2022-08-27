@@ -11,6 +11,7 @@ specifiers:
   '@vueuse/core': ^9.1.0
   '@vueuse/head': ^0.7.9
   '@vueuse/integrations': ^9.1.0
+  '@vueuse/math': ^9.1.1
   '@vueuse/router': ^9.1.0
   axios: ^0.27.2
   bumpp: ^8.2.1
@@ -45,6 +46,7 @@ dependencies:
   '@vueuse/core': 9.1.0_vue@3.2.37
   '@vueuse/head': 0.7.9_vue@3.2.37
   '@vueuse/integrations': 9.1.0_51dd2a5c2688bbf6acd739130a4ede77
+  '@vueuse/math': 9.1.1_vue@3.2.37
   '@vueuse/router': 9.1.0_vue-router@4.1.3+vue@3.2.37
   axios: 0.27.2
   element-plus: 2.2.14_vue@3.2.37
@@ -2491,6 +2493,16 @@ packages:
       - vue
     dev: false
 
+  /@vueuse/math/9.1.1_vue@3.2.37:
+    resolution: {integrity: sha512-cUkEnnw7WYb5dzEyEoVLFNu2b/CjlhJ38O7zj1MYas7KzqXifvJJDiAipuBYskJPNoyauV2BXVZI6l1UDweFMg==}
+    dependencies:
+      '@vueuse/shared': 9.1.1_vue@3.2.37
+      vue-demi: 0.13.6_vue@3.2.37
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
+
   /@vueuse/metadata/9.1.0:
     resolution: {integrity: sha512-8OEhlog1iaAGTD3LICZ8oBGQdYeMwByvXetOtAOZCJOzyCRSwqwdggTsmVZZ1rkgYIEqgUBk942AsAPwM21s6A==}
     dev: false
@@ -2510,6 +2522,15 @@ packages:
 
   /@vueuse/shared/9.1.0_vue@3.2.37:
     resolution: {integrity: sha512-pB/3njQu4tfJJ78ajELNda0yMG6lKfpToQW7Soe09CprF1k3QuyoNi1tBNvo75wBDJWD+LOnr+c4B5HZ39jY/Q==}
+    dependencies:
+      vue-demi: 0.13.6_vue@3.2.37
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
+
+  /@vueuse/shared/9.1.1_vue@3.2.37:
+    resolution: {integrity: sha512-c+IfcOYmHiHqoEa3ED1Tbpue5GHmoUmTp8PtO4YbczthtY155Rt6DmWhjxMLXBF1Bcidagxljmp/7xtAzEHXLw==}
     dependencies:
       vue-demi: 0.13.6_vue@3.2.37
     transitivePeerDependencies:

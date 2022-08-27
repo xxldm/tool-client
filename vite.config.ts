@@ -58,6 +58,7 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
           "pinia",
           "@vueuse/core",
           "@vueuse/head",
+          "@vueuse/math",
           {
             "axios": [
               ["default", "axios"],
@@ -137,6 +138,9 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
     // https://github.com/vitest-dev/vitest
     test: {
       environment: "jsdom",
+    },
+    server: {
+      strictPort: true,
     },
     build: {
       emptyOutDir: true,
