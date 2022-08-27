@@ -12,7 +12,7 @@ useHead({
     if (!route.name) {
       return t("appName");
     }
-    return `${t(`menu.${route.name.toString()}`)} - ${t("appName")}`;
+    return `${t(route.name.toString())} - ${t("appName")}`;
   }),
   htmlAttrs: {
     // 后续修改lang属性,不会改变浏览器翻译功能的当前语言

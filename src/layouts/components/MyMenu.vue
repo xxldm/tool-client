@@ -5,7 +5,7 @@
       :key="route.path"
       :index="route.path"
     >
-      {{ t(`menu.${route.children![0].name?.toString()}`) }}
+      {{ t(route.children![0].name?.toString()) }}
     </el-menu-item>
   </el-menu>
 </template>

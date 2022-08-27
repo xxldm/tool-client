@@ -6,5 +6,5 @@
 </script>
 
 <route lang="yaml">
-name: main
+name: menu.main
 </route>
