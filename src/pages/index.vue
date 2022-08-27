@@ -1,5 +1,5 @@
 <template>
-  <div />
+  <hour-meter />
 </template>
 
 <script setup lang="ts">
