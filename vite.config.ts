@@ -31,6 +31,7 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
       Vue({
         reactivityTransform: true,
       }),
+
       electron({
         main: {
           entry: "electron/main/index.ts",
@@ -39,6 +40,17 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
               outDir: "dist/electron/main",
             },
           }),
+        },
+        preload: {
+          input: {
+            index: "electron/preload/index.ts",
+          },
+          vite: {
+            build: {
+              sourcemap: isDebug,
+              outDir: "dist/electron/preload",
+            },
+          },
         },
       }),
 
@@ -73,6 +85,11 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
               ["useRouteHash", "useRouteHash"],
               ["useRouteParams", "useRouteParams"],
               ["useRouteQuery", "useRouteQuery"],
+            ],
+            "@vueuse/electron": [
+              ["useIpcRenderer", "useIpcRenderer"],
+              ["useIpcRendererInvoke", "useIpcRendererInvoke"],
+              ["useIpcRendererOn", "useIpcRendererOn"],
             ],
           },
         ],
@@ -142,10 +159,11 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
     server: {
       strictPort: true,
     },
+    // 被 electron 插件覆盖了
     build: {
       emptyOutDir: true,
-      // 被 electron 插件覆盖了?,不设置会打包到dist根目录
       assetsDir: "assets",
+      cssCodeSplit: true,
     },
   };
 };

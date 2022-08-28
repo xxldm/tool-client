@@ -1,5 +1,5 @@
-import type { MenuItem } from "electron";
-import { app, BrowserWindow, Menu, Tray } from "electron";
+import { type MenuItem, app, BrowserWindow, ipcMain, Menu, Tray } from "electron";
+import Store from "electron-store";
 import { join } from "path";
 
 // VITE_DEV_SERVER_PORT 是 vite-plugin-electron 插件定义,取自vite开发服务器配置,与用户配置文件中的环境变量无直接关联
@@ -34,20 +34,20 @@ function ready() {
   createWindow();
   createTray();
   createMenu();
+  initIpc();
 }
 
 let win: BrowserWindow | null = null;
 
+/**
+ * 创建窗口
+ */
 function createWindow() {
   win = new BrowserWindow({
     width: 1600,
     height: 1200,
     webPreferences: {
-      // Warning: Enable nodeIntegration and disable contextIsolation is not secure in production
-      // Consider using contextBridge.exposeInMainWorld
-      // Read more on https://www.electronjs.org/docs/latest/tutorial/context-isolation
-      nodeIntegration: true,
-      contextIsolation: false,
+      preload: join(__dirname, "../preload/index.js"),
     },
   });
 
@@ -94,6 +94,38 @@ function createMenu() {
         },
       },
     ]),
+  );
+}
+
+function initIpc() {
+  initStoreIpc();
+}
+
+function initStoreIpc() {
+  const store = new Store<Record<string, string>>();
+  // 配置文件读取
+  ipcMain.on("getItem",
+    (event, arg: string[]) => event.returnValue = store.get(arg[0]),
+  );
+  // 配置文件写入
+  ipcMain.on("setItem",
+    (event, arg: string[]) => event.returnValue = store.set(arg[0], arg[1]),
+  );
+  // 配置文件写入
+  ipcMain.on("removeItem",
+    (event, arg: string[]) => event.returnValue = store.delete(arg[0]),
+  );
+  // 配置文件读取
+  ipcMain.handle("getItemAsync",
+    (event, arg: string[]) => event.returnValue = store.get(arg[0]),
+  );
+  // 配置文件写入
+  ipcMain.handle("setItemAsync",
+    (event, arg: string[]) => event.returnValue = store.set(arg[0], arg[1]),
+  );
+  // 配置文件写入
+  ipcMain.handle("removeItemAsync",
+    (event, arg: string[]) => event.returnValue = store.delete(arg[0]),
   );
 }
 

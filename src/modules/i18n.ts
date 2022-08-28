@@ -1,6 +1,6 @@
 import { createI18n } from "vue-i18n";
 
-export const defaultLocale = useLocalStorage("locale", "zh-cn").value;
+export const defaultLocale = "zh-cn";
 
 interface locale {
   [key: string]: {

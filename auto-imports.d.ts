@@ -72,6 +72,8 @@ declare global {
   const mapStores: typeof import('pinia')['mapStores']
   const mapWritableState: typeof import('pinia')['mapWritableState']
   const markRaw: typeof import('vue')['markRaw']
+  const myStorage: typeof import('./src/composables/storage')['myStorage']
+  const myStorageAsync: typeof import('./src/composables/storage')['myStorageAsync']
   const nextTick: typeof import('vue')['nextTick']
   const now: typeof import('./src/composables/time')['now']
   const onActivated: typeof import('vue')['onActivated']
@@ -211,6 +213,9 @@ declare global {
   const useIntersectionObserver: typeof import('@vueuse/core')['useIntersectionObserver']
   const useInterval: typeof import('@vueuse/core')['useInterval']
   const useIntervalFn: typeof import('@vueuse/core')['useIntervalFn']
+  const useIpcRenderer: typeof import('@vueuse/electron')['useIpcRenderer']
+  const useIpcRendererInvoke: typeof import('@vueuse/electron')['useIpcRendererInvoke']
+  const useIpcRendererOn: typeof import('@vueuse/electron')['useIpcRendererOn']
   const useKeyModifier: typeof import('@vueuse/core')['useKeyModifier']
   const useLastChanged: typeof import('@vueuse/core')['useLastChanged']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
@@ -399,6 +404,8 @@ declare module '@vue/runtime-core' {
     readonly mapStores: UnwrapRef<typeof import('pinia')['mapStores']>
     readonly mapWritableState: UnwrapRef<typeof import('pinia')['mapWritableState']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
+    readonly myStorage: UnwrapRef<typeof import('./src/composables/storage')['myStorage']>
+    readonly myStorageAsync: UnwrapRef<typeof import('./src/composables/storage')['myStorageAsync']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly now: UnwrapRef<typeof import('./src/composables/time')['now']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
@@ -538,6 +545,9 @@ declare module '@vue/runtime-core' {
     readonly useIntersectionObserver: UnwrapRef<typeof import('@vueuse/core')['useIntersectionObserver']>
     readonly useInterval: UnwrapRef<typeof import('@vueuse/core')['useInterval']>
     readonly useIntervalFn: UnwrapRef<typeof import('@vueuse/core')['useIntervalFn']>
+    readonly useIpcRenderer: UnwrapRef<typeof import('@vueuse/electron')['useIpcRenderer']>
+    readonly useIpcRendererInvoke: UnwrapRef<typeof import('@vueuse/electron')['useIpcRendererInvoke']>
+    readonly useIpcRendererOn: UnwrapRef<typeof import('@vueuse/electron')['useIpcRendererOn']>
     readonly useKeyModifier: UnwrapRef<typeof import('@vueuse/core')['useKeyModifier']>
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
