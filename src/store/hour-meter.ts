@@ -1,89 +1,70 @@
 import dayjs from "dayjs";
+import type { WatchStopHandle } from "vue";
 
 export interface HourMeter {
   duration: number
-  endTime: Date | undefined
-  checked: boolean
+  endTime?: Date
+  checked?: boolean
+  ring?: boolean
+  ringId?: number
+  watch?: WatchStopHandle
 }
 
 export const useHourMeterStore = defineStore("hour-meter", () => {
-  const hourMeters = ref([{
+  const hourMeters = useStorage<HourMeter[]>("hour-meters", [{
     duration: 240,
-    endTime: undefined,
-    checked: false,
   }, {
     duration: 600,
-    endTime: undefined,
-    checked: false,
-  }, {
-    duration: 600,
-    endTime: undefined,
-    checked: false,
-  }, {
-    duration: 600,
-    endTime: undefined,
-    checked: false,
-  }, {
-    duration: 600,
-    endTime: undefined,
-    checked: false,
-  }, {
-    duration: 600,
-    endTime: undefined,
-    checked: false,
-  }, {
-    duration: 600,
-    endTime: undefined,
-    checked: false,
-  }, {
-    duration: 600,
-    endTime: undefined,
-    checked: false,
-  }, {
-    duration: 600,
-    endTime: undefined,
-    checked: false,
-  }, {
-    duration: 600,
-    endTime: undefined,
-    checked: false,
-  }, {
-    duration: 600,
-    endTime: undefined,
-    checked: false,
-  }, {
-    duration: 600,
-    endTime: undefined,
-    checked: false,
-  }, {
-    duration: 600,
-    endTime: undefined,
-    checked: false,
-  }, {
-    duration: 600,
-    endTime: undefined,
-    checked: false,
-  }, {
-    duration: 600,
-    endTime: undefined,
-    checked: false,
-  }, {
-    duration: 600,
-    endTime: undefined,
-    checked: false,
-  }]);
+  }], myStorage, {
+    serializer: {
+      read: (v: string) => v ? JSON.parse(v) : null,
+      write: (v: HourMeter[]) => JSON.stringify(v.map((hourMeter: HourMeter) => ({ duration: hourMeter.duration }))),
+    },
+  });
 
-  const getRemainingTime = (hourMeters: HourMeter) =>
-    computed(() => hourMeters.endTime ? formatDiff(now.value, hourMeters.endTime) : formatDiff(hourMeters.duration));
+  const getRemainingTime = (hourMeter: HourMeter) => {
+    return computed(() => {
+      if (hourMeter.endTime === undefined) {
+        hourMeter.ring = false;
+        return formatDiff(hourMeter.duration);
+      }
+      if (now.value.getTime() > hourMeter.endTime?.getTime()) {
+        hourMeter.ring = true;
+      }
+      return formatDiff(now.value, hourMeter.endTime);
+    });
+  };
 
-  const start = (hourMeters: HourMeter) => {
-    hourMeters.endTime = dayjs(now.value).add(hourMeters.duration, "second").toDate();
+  const start = (hourMeter: HourMeter) => {
+    hourMeter.endTime = dayjs(now.value).add(hourMeter.duration, "second").toDate();
+  };
+
+  const click = (hourMeter: HourMeter) => {
+    hourMeter.checked = !hourMeter.checked;
+    if (hourMeter.checked) {
+      start(hourMeter);
+    } else {
+      hourMeter.endTime = undefined;
+    }
+  };
+
+  const del = (index: number) => {
+    hourMeters.value.splice(index, 1);
+  };
+
+  const add = (duration: number) => {
+    hourMeters.value.push({
+      duration,
+    });
   };
 
   return {
     hourMeters,
     getRemainingTime,
     start,
+    click,
+    del,
+    add,
   };
 });
 

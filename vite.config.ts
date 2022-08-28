@@ -81,6 +81,9 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
             "@vueuse/integrations/useAxios": [
               ["useAxios", "useAxios"],
             ],
+            "@vueuse/sound": [
+              ["useSound", "useSound"],
+            ],
             "@vueuse/router": [
               ["useRouteHash", "useRouteHash"],
               ["useRouteParams", "useRouteParams"],

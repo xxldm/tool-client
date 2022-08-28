@@ -13,6 +13,7 @@
   "error": {
     "PageNotFound": "页面走丢了"
   },
+  "hourMeter": "计时器",
   "menu": {
     "goMain": "回首页",
     "main": "首页"
