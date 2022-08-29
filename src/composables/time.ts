@@ -7,9 +7,12 @@ export function formatDiff(diffSecond: number, maxUnitCount?: number): string;
 export function formatDiff(startTime: Date, endTime: Date, maxUnitCount?: number, isRoot?: boolean): string;
 export function formatDiff(arg1: Date | number, arg2: Date | number | undefined, maxUnitCount = 2, isRoot = true): string {
   if (typeof arg1 === "number") {
+    if (arg1 === 0) {
+      return `0 ${t("date.unit.second")}`;
+    }
     const startTime = dayjs();
     const endTime = startTime.add(arg1, "second");
-    return formatDiff(startTime.toDate(), endTime.toDate(), arg2 as number | undefined, false);
+    return formatDiff(startTime.toDate(), endTime.toDate(), arg2 as number | undefined, true);
   }
   const units: ["year", "month", "day", "hour", "minute", "second"] = ["year", "month", "day", "hour", "minute", "second"];
   for (const unit of units) {

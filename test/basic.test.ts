@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+export default {};
 
 describe("Hi", () => {
   it("should works", () => {
