@@ -13,12 +13,13 @@
         effect="plain"
         cursor-pointer
         closable
+        :class="hourMeter.ring ? 'flicker' : ''"
         :checked="hourMeter.checked"
         size="large"
         @click="click(hourMeter)"
         @close="hourMeterStore.del(index)"
       >
-        {{ hourMeterStore.getRemainingTime(hourMeter) }}
+        {{ hourMeterStore.getRemainingTime(hourMeter).value }}
         <span m="l-1.5">|</span>
       </el-tag>
 
@@ -95,3 +96,15 @@ const showInput = () => {
   });
 };
 </script>
+
+<style lang="scss">
+.flicker {
+  animation: aBlink 500ms infinite;
+}
+
+@keyframes aBlink {
+  from { opacity: 0.5; }
+  50% { opacity: 1; }
+  to { opacity: 0.5; }
+}
+</style>
