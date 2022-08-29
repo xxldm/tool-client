@@ -19,6 +19,7 @@
         @close="hourMeterStore.del(index)"
       >
         {{ hourMeterStore.getRemainingTime(hourMeter) }}
+        <span m="l-1.5">|</span>
       </el-tag>
 
       <el-input
