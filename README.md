@@ -9,7 +9,7 @@
 
   ![GitHub](https://img.shields.io/github/license/xxldm/tool-client)
   ![GitHub last commit](https://img.shields.io/github/last-commit/xxldm/tool-client)
-  ![GitHub branch checks state](https://img.shields.io/github/checks-status/xxldm/tool-client/main)
+  ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/xxldm/tool-client/test)
   ![GitHub release (latest by date)](https://img.shields.io/github/v/release/xxldm/tool-client)
   </h1>
 </div>
