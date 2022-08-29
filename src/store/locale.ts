@@ -1,10 +1,8 @@
-import type { Language } from "element-plus/es/locale";
-
-import { defaultLocale } from "~/modules/i18n";
+import { defaultLocale, setLocale } from "~/modules/i18n";
 
 export const useLocaleStore = defineStore("my-locale", () => {
-  const locale = useStorage("locale", defaultLocale, myStorage);
-  const elLocale: Language | undefined = undefined;
+  const locale = useStorageAsync("locale", defaultLocale, myStorageAsync);
+  const elLocale = computedAsync(() => setLocale(locale.value));
   return {
     locale,
     elLocale,

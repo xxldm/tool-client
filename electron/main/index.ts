@@ -117,15 +117,15 @@ function initStoreIpc() {
   );
   // 配置文件读取
   ipcMain.handle("getItemAsync",
-    (event, arg: string[]) => event.returnValue = store.get(arg[0]),
+    (event, arg: string[]) => store.get(arg[0]),
   );
   // 配置文件写入
   ipcMain.handle("setItemAsync",
-    (event, arg: string[]) => event.returnValue = store.set(arg[0], arg[1]),
+    (event, arg: string[]) => store.set(arg[0], arg[1]),
   );
   // 配置文件写入
   ipcMain.handle("removeItemAsync",
-    (event, arg: string[]) => event.returnValue = store.delete(arg[0]),
+    (event, arg: string[]) => store.delete(arg[0]),
   );
 }
 

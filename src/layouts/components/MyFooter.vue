@@ -20,7 +20,7 @@
             text
             m="l-0!"
             :disabled="disabled(key as string)"
-            @click="setLocale(key as string)"
+            @click="click(key as string)"
           >
             <div
               v-show="disabled(key as string)"
@@ -54,5 +54,7 @@
 
 <script lang="ts" setup>
 import { setLocale, supportLocales } from "~/modules/i18n";
-const disabled = (locale: string) => useLocaleStore().locale === locale;
+const localeStore = useLocaleStore();
+const disabled = (locale: string) => localeStore.locale === locale;
+const click = (locale: string) => localeStore.locale = locale;
 </script>
