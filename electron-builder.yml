@@ -1,4 +1,4 @@
-appId: xxldm.vitesse.electron
+appId: xxldm.tool
 asar: true
 directories:
   output: release

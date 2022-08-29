@@ -124,8 +124,8 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
         registerType: "autoUpdate",
         includeAssets: ["favicon.svg", "safari-pinned-tab.svg"],
         manifest: {
-          name: "Vitesse",
-          short_name: "Vitesse",
+          name: "工具箱",
+          short_name: "工具箱",
           theme_color: "#ffffff",
           icons: [
             {
