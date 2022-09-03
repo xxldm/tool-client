@@ -73,5 +73,5 @@ jobs:
           name: electron-build
           path: |
             release
-            !*-unpacked
+            !release/*-unpacked
           retention-days: 30
