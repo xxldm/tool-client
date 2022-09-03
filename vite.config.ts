@@ -1,5 +1,6 @@
 import VueI18n from "@intlify/vite-plugin-vue-i18n";
 import Vue from "@vitejs/plugin-vue";
+import { rmSync } from "fs";
 import { resolve } from "path";
 import Unocss from "unocss/vite";
 import AutoImport from "unplugin-auto-import/vite";
@@ -12,6 +13,7 @@ import { VitePWA } from "vite-plugin-pwa";
 import Layouts from "vite-plugin-vue-layouts";
 
 export default ({ mode }: ConfigEnv): UserConfigExport => {
+  rmSync("release", { recursive: true, force: true });
   const env = loadEnv(mode, __dirname, ["VSCODE_"]);
   const isDebug = env.VSCODE_DEBUG !== undefined;
   return {

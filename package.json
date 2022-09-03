@@ -6,6 +6,7 @@
   "description": "自用工具箱UI",
   "author": {
     "name": "xxldm",
+    "email": "419722140@qq.com",
     "url": "https://github.com/xxldm"
   },
   "main": "dist/electron/main/index.js",

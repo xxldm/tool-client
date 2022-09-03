@@ -17,6 +17,11 @@ if (process.platform === "win32") {
   app.setAppUserModelId(app.getName());
 }
 
+if (process.platform === "linux") {
+  // 不禁用硬件加速会各种卡死
+  app.disableHardwareAcceleration();
+}
+
 if (!app.requestSingleInstanceLock()) {
   app.quit();
   process.exit(0);
