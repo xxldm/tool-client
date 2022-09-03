@@ -70,7 +70,7 @@ jobs:
       - name: 上传构件
         uses: actions/upload-artifact@v3
         with:
-          name: electron-build
+          name: electron-build-${{ runner.os }}-node${{ matrix.node-version }}
           path: |
             release
             !release/*-unpacked
