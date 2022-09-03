@@ -19,3 +19,6 @@ nsis:
   perMachine: true
   allowToChangeInstallationDirectory: true
   deleteAppDataOnUninstall: false
+linux:
+  icon: public
+  category: Utility
