@@ -1,4 +1,5 @@
 appId: xxldm.tool
+productName: ToolClient
 asar: true
 directories:
   output: release
