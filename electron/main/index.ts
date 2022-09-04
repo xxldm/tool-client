@@ -163,7 +163,7 @@ function configProcess(key: string, value: string) {
     case "openAtLogin":
       // 修改了 <开机自启> 设置
       app.setLoginItemSettings({
-        openAtLogin: Boolean(value),
+        openAtLogin: value === "true",
       });
       break;
     default:
