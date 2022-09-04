@@ -1,3 +1,12 @@
+## [0.0.4-beta.0](https://github.com/xxldm/tool-client/compare/v0.0.3...v0.0.4-beta.0) (2022-09-04)
+
+
+### Features
+
+* 自动更新 ([dc4248c](https://github.com/xxldm/tool-client/commit/dc4248c226909d27a0e9a883645addedf3148b56))
+
+
+
 ## [0.0.3](https://github.com/xxldm/tool-client/compare/v0.0.2...v0.0.3) (2022-09-04)
 
 
