@@ -1,3 +1,12 @@
+## [0.0.2](https://github.com/xxldm/tool-client/compare/v0.0.1...v0.0.2) (2022-09-04)
+
+
+### Features
+
+* 开机自启 ([9f1d2e3](https://github.com/xxldm/tool-client/commit/9f1d2e36a4227454b5ad46be0d4c110661ef7c48))
+
+
+
 ## [0.0.1](https://github.com/xxldm/tool-client/compare/v0.0.1-beta.10...v0.0.1) (2022-08-28)
 
 
