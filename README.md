@@ -2,7 +2,7 @@
 
   [![只是一只非常普通的仓鼠](public/favicon.svg)](https://space.bilibili.com/136107)
 
-  ⬆️麻醉专业 , 麻醉棒⬆️
+  [⬆️麻醉专业 , 麻醉棒⬆️](https://space.bilibili.com/136107)
   <h1>
   自用工具箱
 
