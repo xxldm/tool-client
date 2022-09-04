@@ -9,7 +9,7 @@
   [![GitHub](https://img.shields.io/github/license/xxldm/tool-client)](LICENSE)
   [![GitHub last commit](https://img.shields.io/github/last-commit/xxldm/tool-client)](../../commits/main)
   [![GitHub Workflow Status](https://github.com/xxldm/tool-client/actions/workflows/test.yml/badge.svg)](../../actions/workflows/test.yml)
-  [![GitHub release (latest by date)](https://img.shields.io/github/v/release/xxldm/tool-client)](../../releases/latest)
+  [![GitHub release (latest by date)](https://img.shields.io/github/v/release/xxldm/tool-client)](../../releases)
   </h1>
 </div>
 
