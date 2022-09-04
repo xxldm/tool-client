@@ -1,7 +1,9 @@
 export const useSettingsStore = defineStore("my-settings", () => {
   const openAtLogin = useStorageAsync("openAtLogin", false, myStorageAsync);
+  const allowPrerelease = useStorageAsync("allowPrerelease", false, myStorageAsync);
   return {
     openAtLogin,
+    allowPrerelease,
   };
 });
 

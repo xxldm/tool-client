@@ -27,6 +27,7 @@
   "reboot": "reboot",
   "settings": {
     "label": {
+      "allowPrerelease": "Whether to update the beta version",
       "openAtLogin": "Automatically run at startup"
     },
     "system": "system settings"

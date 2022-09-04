@@ -27,6 +27,7 @@
   "reboot": "重启",
   "settings": {
     "label": {
+      "allowPrerelease": "是否更新测试版",
       "openAtLogin": "开机时自动运行"
     },
     "system": "系统设置"

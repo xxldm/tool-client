@@ -13,6 +13,12 @@
     >
       <el-switch v-model="settingsStore.openAtLogin" />
     </el-descriptions-item>
+    <el-descriptions-item
+      v-if="isPackage"
+      :label="t('settings.label.allowPrerelease')"
+    >
+      <el-switch v-model="settingsStore.allowPrerelease" />
+    </el-descriptions-item>
   </el-descriptions>
 </template>
 
