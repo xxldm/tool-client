@@ -185,9 +185,7 @@ function check() {
 function ready() {
   createWindow();
   createTray();
-  if (!app.isPackaged) {
-    createMenu();
-  }
+  createMenu();
 }
 
 /**
@@ -230,8 +228,9 @@ function createTray() {
  * 创建主菜单
  */
 function createMenu() {
-  Menu.setApplicationMenu(
-    Menu.buildFromTemplate([
+  Menu.setApplicationMenu(app.isPackaged
+    ? null
+    : Menu.buildFromTemplate([
       {
         label: "开发者工具",
         accelerator: "F12",

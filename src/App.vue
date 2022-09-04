@@ -1,14 +1,7 @@
 <template>
   <el-config-provider :locale="localeStore.elLocale">
     <router-view />
-    <el-dialog
-      v-model="useUpdateStore().showDialog"
-      width="550px"
-      :title="t('update.title')"
-      center
-    >
-      <app-update />
-    </el-dialog>
+    <app-update v-if="isElectron && isPackage" />
   </el-config-provider>
 </template>
 

@@ -18,7 +18,7 @@
         </el-dropdown-item>
         <el-dropdown-item
           v-if="isElectron && isPackage"
-          @click="useUpdateStore().showDialog = true;checkUpdate()"
+          @click="useUpdateStore().showDialog = true"
         >
           <span
             i-carbon-renew
