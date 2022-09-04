@@ -22,3 +22,5 @@ nsis:
 linux:
   icon: public
   category: Utility
+  target: AppImage
+  artifactName: ${productName}_v${version}.${ext}

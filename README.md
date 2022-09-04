@@ -9,14 +9,14 @@
 
   ![GitHub](https://img.shields.io/github/license/xxldm/tool-client)
   ![GitHub last commit](https://img.shields.io/github/last-commit/xxldm/tool-client)
-  ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/xxldm/tool-client/test?label=test)
+  ![GitHub Workflow Status](https://github.com/xxldm/tool-client/actions/workflows/test.yml/badge.svg)
   ![GitHub release (latest by date)](https://img.shields.io/github/v/release/xxldm/tool-client)
   </h1>
 </div>
 
 ## electron 客户端功能
-  - [ ] 开机自启
+  - [ ] 开机自启 (仅 windows)
   - [ ] 自动更新
-  - [ ] 壁纸模式
+  - [ ] 壁纸模式 (仅 windows)
 ## web 端功能
   - [x] 计时器
