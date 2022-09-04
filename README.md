@@ -1,16 +1,15 @@
 <div align="center">
 
-  ![只是一只非常普通的仓鼠](public/favicon.svg)
+  [![只是一只非常普通的仓鼠](public/favicon.svg)](https://space.bilibili.com/136107)
 
-  [⬆️麻醉专业 , 麻醉棒⬆️](https://space.bilibili.com/136107)
-
+  ⬆️麻醉专业 , 麻醉棒⬆️
   <h1>
   自用工具箱
 
-  ![GitHub](https://img.shields.io/github/license/xxldm/tool-client)
-  ![GitHub last commit](https://img.shields.io/github/last-commit/xxldm/tool-client)
-  ![GitHub Workflow Status](https://github.com/xxldm/tool-client/actions/workflows/test.yml/badge.svg)
-  ![GitHub release (latest by date)](https://img.shields.io/github/v/release/xxldm/tool-client)
+  [![GitHub](https://img.shields.io/github/license/xxldm/tool-client)](LICENSE)
+  [![GitHub last commit](https://img.shields.io/github/last-commit/xxldm/tool-client)](../../commits/main)
+  [![GitHub Workflow Status](https://github.com/xxldm/tool-client/actions/workflows/test.yml/badge.svg)](../../actions/workflows/test.yml)
+  [![GitHub release (latest by date)](https://img.shields.io/github/v/release/xxldm/tool-client)](../../releases/latest)
   </h1>
 </div>
 
