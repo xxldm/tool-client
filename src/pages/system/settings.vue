@@ -8,10 +8,9 @@
 
   <el-descriptions v-if="isElectron">
     <el-descriptions-item
-      v-if="!getPlatform().isLinux"
+      v-if="!getPlatform().isLinux && isPackage"
       :label="t('settings.label.openAtLogin')"
     >
-      {{ getPlatform() }}
       <el-switch v-model="settingsStore.openAtLogin" />
     </el-descriptions-item>
   </el-descriptions>

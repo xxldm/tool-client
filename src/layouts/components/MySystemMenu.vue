@@ -17,6 +17,16 @@
           {{ t("system.settings") }}
         </el-dropdown-item>
         <el-dropdown-item
+          v-if="isElectron && isPackage"
+          @click="useUpdateStore().showDialog = true;checkUpdate()"
+        >
+          <span
+            i-carbon-renew
+            p-r-1
+          />
+          {{ t("get") }}{{ t("update.update") }}
+        </el-dropdown-item>
+        <el-dropdown-item
           v-if="isElectron"
           divided
           @click="closeApp"

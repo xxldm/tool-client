@@ -35,6 +35,7 @@
     "@vueuse/router": "^9.1.1",
     "@vueuse/sound": "^1.1.7",
     "axios": "^0.27.2",
+    "electron-updater": "^5.2.1",
     "element-plus": "^2.2.16",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.21",

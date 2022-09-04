@@ -1,5 +1,8 @@
 {
+  "app": "application",
   "appName": "toolbox",
+  "confirm": "confirm",
+  "content": "content",
   "date": {
     "unit": {
       "day": "sky",
@@ -10,14 +13,18 @@
       "year": "year"
     }
   },
+  "download": "download",
   "error": {
     "PageNotFound": "page lost"
   },
+  "get": "get",
   "hourMeter": "timer",
   "menu": {
     "goMain": "Home",
     "main": "front page"
   },
+  "no": "no",
+  "reboot": "reboot",
   "settings": {
     "label": {
       "openAtLogin": "Automatically run at startup"
@@ -27,5 +34,15 @@
   "system": {
     "closeApp": "closure",
     "settings": "set up"
-  }
+  },
+  "update": {
+    "currentVersion": "current version",
+    "downloading": "Downloading update",
+    "latestVersion": "is the latest version",
+    "newVersion": "new version detected",
+    "skipUpdate": "Automatic update skip this version",
+    "title": "Update the app",
+    "update": "renew"
+  },
+  "yes": "Yes"
 }

@@ -19,6 +19,7 @@ declare global {
   const beforeAll: typeof import('vitest')['beforeAll']
   const beforeEach: typeof import('vitest')['beforeEach']
   const chai: typeof import('vitest')['chai']
+  const checkUpdate: typeof import('./src/composables/electron')['checkUpdate']
   const closeApp: typeof import('./src/composables/electron')['closeApp']
   const computed: typeof import('vue')['computed']
   const computedAsync: typeof import('@vueuse/core')['computedAsync']
@@ -44,14 +45,19 @@ declare global {
   const defineComponent: typeof import('vue')['defineComponent']
   const defineStore: typeof import('pinia')['defineStore']
   const describe: typeof import('vitest')['describe']
+  const downloadDownloaded: typeof import('./src/composables/electron')['downloadDownloaded']
+  const downloadProgress: typeof import('./src/composables/electron')['downloadProgress']
+  const downloadUpdate: typeof import('./src/composables/electron')['downloadUpdate']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
   const expect: typeof import('vitest')['expect']
   const extendRef: typeof import('@vueuse/core')['extendRef']
-  const formatDiff: typeof import('./src/composables/time')['formatDiff']
+  const formatBytes: typeof import('./src/composables/format')['formatBytes']
+  const formatDiff: typeof import('./src/composables/format')['formatDiff']
   const getActivePinia: typeof import('pinia')['getActivePinia']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
+  const getCurrentVersion: typeof import('./src/composables/electron')['getCurrentVersion']
   const getPlatform: typeof import('./src/composables/electron')['getPlatform']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
@@ -59,6 +65,7 @@ declare global {
   const isDark: typeof import('./src/composables/dark')['isDark']
   const isDefined: typeof import('@vueuse/core')['isDefined']
   const isElectron: typeof import('./src/composables/electron')['isElectron']
+  const isPackage: typeof import('./src/composables/electron')['isPackage']
   const isProxy: typeof import('vue')['isProxy']
   const isReactive: typeof import('vue')['isReactive']
   const isReadonly: typeof import('vue')['isReadonly']
@@ -97,6 +104,7 @@ declare global {
   const onUpdated: typeof import('vue')['onUpdated']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const provide: typeof import('vue')['provide']
+  const quitAndInstall: typeof import('./src/composables/electron')['quitAndInstall']
   const reactify: typeof import('@vueuse/core')['reactify']
   const reactifyObject: typeof import('@vueuse/core')['reactifyObject']
   const reactive: typeof import('vue')['reactive']
@@ -140,6 +148,9 @@ declare global {
   const unref: typeof import('vue')['unref']
   const unrefElement: typeof import('@vueuse/core')['unrefElement']
   const until: typeof import('@vueuse/core')['until']
+  const updateAvailable: typeof import('./src/composables/electron')['updateAvailable']
+  const updateError: typeof import('./src/composables/electron')['updateError']
+  const updateNotAvailable: typeof import('./src/composables/electron')['updateNotAvailable']
   const useAbs: typeof import('@vueuse/math')['useAbs']
   const useActiveElement: typeof import('@vueuse/core')['useActiveElement']
   const useArrayEvery: typeof import('@vueuse/core')['useArrayEvery']
@@ -303,6 +314,7 @@ declare global {
   const useToggle: typeof import('@vueuse/core')['useToggle']
   const useTransition: typeof import('@vueuse/core')['useTransition']
   const useTrunc: typeof import('@vueuse/math')['useTrunc']
+  const useUpdateStore: typeof import('./src/store/update')['useUpdateStore']
   const useUrlSearchParams: typeof import('@vueuse/core')['useUrlSearchParams']
   const useUserMedia: typeof import('@vueuse/core')['useUserMedia']
   const useVModel: typeof import('@vueuse/core')['useVModel']
@@ -356,6 +368,7 @@ declare module '@vue/runtime-core' {
     readonly beforeAll: UnwrapRef<typeof import('vitest')['beforeAll']>
     readonly beforeEach: UnwrapRef<typeof import('vitest')['beforeEach']>
     readonly chai: UnwrapRef<typeof import('vitest')['chai']>
+    readonly checkUpdate: UnwrapRef<typeof import('./src/composables/electron')['checkUpdate']>
     readonly closeApp: UnwrapRef<typeof import('./src/composables/electron')['closeApp']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
@@ -381,14 +394,19 @@ declare module '@vue/runtime-core' {
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly defineStore: UnwrapRef<typeof import('pinia')['defineStore']>
     readonly describe: UnwrapRef<typeof import('vitest')['describe']>
+    readonly downloadDownloaded: UnwrapRef<typeof import('./src/composables/electron')['downloadDownloaded']>
+    readonly downloadProgress: UnwrapRef<typeof import('./src/composables/electron')['downloadProgress']>
+    readonly downloadUpdate: UnwrapRef<typeof import('./src/composables/electron')['downloadUpdate']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly expect: UnwrapRef<typeof import('vitest')['expect']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
-    readonly formatDiff: UnwrapRef<typeof import('./src/composables/time')['formatDiff']>
+    readonly formatBytes: UnwrapRef<typeof import('./src/composables/format')['formatBytes']>
+    readonly formatDiff: UnwrapRef<typeof import('./src/composables/format')['formatDiff']>
     readonly getActivePinia: UnwrapRef<typeof import('pinia')['getActivePinia']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly getCurrentVersion: UnwrapRef<typeof import('./src/composables/electron')['getCurrentVersion']>
     readonly getPlatform: UnwrapRef<typeof import('./src/composables/electron')['getPlatform']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
@@ -396,6 +414,7 @@ declare module '@vue/runtime-core' {
     readonly isDark: UnwrapRef<typeof import('./src/composables/dark')['isDark']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
     readonly isElectron: UnwrapRef<typeof import('./src/composables/electron')['isElectron']>
+    readonly isPackage: UnwrapRef<typeof import('./src/composables/electron')['isPackage']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
@@ -434,6 +453,7 @@ declare module '@vue/runtime-core' {
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
+    readonly quitAndInstall: UnwrapRef<typeof import('./src/composables/electron')['quitAndInstall']>
     readonly reactify: UnwrapRef<typeof import('@vueuse/core')['reactify']>
     readonly reactifyObject: UnwrapRef<typeof import('@vueuse/core')['reactifyObject']>
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
@@ -477,6 +497,9 @@ declare module '@vue/runtime-core' {
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
+    readonly updateAvailable: UnwrapRef<typeof import('./src/composables/electron')['updateAvailable']>
+    readonly updateError: UnwrapRef<typeof import('./src/composables/electron')['updateError']>
+    readonly updateNotAvailable: UnwrapRef<typeof import('./src/composables/electron')['updateNotAvailable']>
     readonly useAbs: UnwrapRef<typeof import('@vueuse/math')['useAbs']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useArrayEvery: UnwrapRef<typeof import('@vueuse/core')['useArrayEvery']>
@@ -640,6 +663,7 @@ declare module '@vue/runtime-core' {
     readonly useToggle: UnwrapRef<typeof import('@vueuse/core')['useToggle']>
     readonly useTransition: UnwrapRef<typeof import('@vueuse/core')['useTransition']>
     readonly useTrunc: UnwrapRef<typeof import('@vueuse/math')['useTrunc']>
+    readonly useUpdateStore: UnwrapRef<typeof import('./src/store/update')['useUpdateStore']>
     readonly useUrlSearchParams: UnwrapRef<typeof import('@vueuse/core')['useUrlSearchParams']>
     readonly useUserMedia: UnwrapRef<typeof import('@vueuse/core')['useUserMedia']>
     readonly useVModel: UnwrapRef<typeof import('@vueuse/core')['useVModel']>
