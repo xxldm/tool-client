@@ -67,18 +67,11 @@ jobs:
       - name: 编译
         run: pnpm run build -p never
 
-      - name: 上传构件(Windows)
+      - name: 上传构件
         uses: actions/upload-artifact@v3
-        if: runner.os == 'Windows'
         with:
-          name: electron-build-${{ runner.os }}-node${{ matrix.node-version }}.exe
-          path: release/tool-client_v*.exe
-          retention-days: 30
-
-      - name: 上传构件(Linux)
-        uses: actions/upload-artifact@v3
-        if: runner.os == 'Linux'
-        with:
-          name: electron-build-${{ runner.os }}-node${{ matrix.node-version }}.AppImage
-          path: release/tool-client_v*.AppImage
+          name: electron-build-${{ runner.os }}-node${{ matrix.node-version }}
+          path: |
+            release
+            !release/*-unpacked
           retention-days: 30
