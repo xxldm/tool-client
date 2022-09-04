@@ -1,3 +1,12 @@
+## [0.0.3](https://github.com/xxldm/tool-client/compare/v0.0.2...v0.0.3) (2022-09-04)
+
+
+### Bug Fixes
+
+* 自启没法关闭 ([b80eb9f](https://github.com/xxldm/tool-client/commit/b80eb9fd05864eed9640b713b9f2080aac4bfab9))
+
+
+
 ## [0.0.2](https://github.com/xxldm/tool-client/compare/v0.0.1...v0.0.2) (2022-09-04)
 
 
