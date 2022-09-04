@@ -17,5 +17,15 @@
   "menu": {
     "goMain": "回首页",
     "main": "首页"
+  },
+  "settings": {
+    "label": {
+      "openAtLogin": "开机时自动运行"
+    },
+    "system": "系统设置"
+  },
+  "system": {
+    "closeApp": "关闭",
+    "settings": "设置"
   }
 }

@@ -12,7 +12,7 @@
       </el-footer>
     </el-scrollbar>
     <el-backtop target=".backtop-target">
-      <i i-carbon-plane />
+      <span i-carbon-plane />
     </el-backtop>
   </el-container>
 </template>

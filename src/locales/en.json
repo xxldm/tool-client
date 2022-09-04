@@ -17,5 +17,15 @@
   "menu": {
     "goMain": "Home",
     "main": "front page"
+  },
+  "settings": {
+    "label": {
+      "openAtLogin": "Automatically run at startup"
+    },
+    "system": "system settings"
+  },
+  "system": {
+    "closeApp": "closure",
+    "settings": "set up"
   }
 }

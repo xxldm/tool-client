@@ -13,11 +13,17 @@ const env = import.meta.env as {
   PROD: boolean
 };
 
-if (process.platform === "win32") {
+const platform = {
+  isWin: process.platform === "win32",
+  isLinux: process.platform === "linux",
+  isMac: process.platform === "darwin",
+};
+
+if (platform.isWin) {
   app.setAppUserModelId(app.getName());
 }
 
-if (process.platform === "linux") {
+if (platform.isLinux) {
   // 不禁用硬件加速会各种卡死
   app.disableHardwareAcceleration();
 }
@@ -87,7 +93,7 @@ function createMenu() {
   Menu.setApplicationMenu(
     Menu.buildFromTemplate([
       {
-        label: "切换开发者工具",
+        label: "开发者工具",
         accelerator: "F12",
         click(
           item: MenuItem,
@@ -104,6 +110,7 @@ function createMenu() {
 
 function initIpc() {
   initStoreIpc();
+  initSystemIpc();
 }
 
 function initStoreIpc() {
@@ -114,7 +121,11 @@ function initStoreIpc() {
   );
   // 配置文件写入
   ipcMain.on("setItem",
-    (event, arg: string[]) => event.returnValue = store.set(arg[0], arg[1]),
+    (event, arg: string[]) => {
+      configProcess(arg[0], arg[1]);
+      event.returnValue = store.set(arg[0], arg[1],
+      );
+    },
   );
   // 配置文件写入
   ipcMain.on("removeItem",
@@ -126,12 +137,38 @@ function initStoreIpc() {
   );
   // 配置文件写入
   ipcMain.handle("setItemAsync",
-    (event, arg: string[]) => store.set(arg[0], arg[1]),
+    (event, arg: string[]) => {
+      configProcess(arg[0], arg[1]);
+      return store.set(arg[0], arg[1]);
+    },
   );
   // 配置文件写入
   ipcMain.handle("removeItemAsync",
     (event, arg: string[]) => store.delete(arg[0]),
   );
+}
+
+function initSystemIpc() {
+  ipcMain.on("getPlatform", event => event.returnValue = platform);
+  ipcMain.handle("closeApp", () => app.quit());
+}
+
+/**
+ * 修改了配置, 对应对程序做处理
+ * @param key 修改的key
+ * @param value 修改后的值
+ */
+function configProcess(key: string, value: string) {
+  switch (key) {
+    case "openAtLogin":
+      // 修改了 <开机自启> 设置
+      app.setLoginItemSettings({
+        openAtLogin: Boolean(value),
+      });
+      break;
+    default:
+      break;
+  }
 }
 
 app.on("window-all-closed", () => {

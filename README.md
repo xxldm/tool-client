@@ -14,7 +14,7 @@
 </div>
 
 ## electron 客户端功能
-  - [ ] 开机自启 (仅 windows)
+  - [x] 开机自启 (仅 windows)
   - [ ] 自动更新
   - [ ] 壁纸模式 (仅 windows)
 ## web 端功能

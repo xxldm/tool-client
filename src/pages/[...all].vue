@@ -25,5 +25,5 @@ const { t } = useI18n();
 name: error.PageNotFound
 meta:
   layout: blank
-  hidder: true
+  hidden: true
 </route>
