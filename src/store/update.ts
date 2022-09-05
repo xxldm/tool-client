@@ -6,6 +6,7 @@ export const useUpdateStore = defineStore("update", () => {
   const downloaded = ref(false);
   const currentVersion = computed(getCurrentVersion);
   const skipVersion = useStorageAsync<string | undefined>("skipVersion", undefined, myStorageAsync);
+  const errorMessage = ref<string | undefined>();
 
   return {
     showDialog,
@@ -15,6 +16,7 @@ export const useUpdateStore = defineStore("update", () => {
     downloaded,
     currentVersion,
     skipVersion,
+    errorMessage,
   };
 });
 

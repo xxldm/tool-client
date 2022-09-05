@@ -18,6 +18,7 @@ declare global {
   const axios: typeof import('axios')['default']
   const beforeAll: typeof import('vitest')['beforeAll']
   const beforeEach: typeof import('vitest')['beforeEach']
+  const cancelDownloadUpdate: typeof import('./src/composables/electron')['cancelDownloadUpdate']
   const chai: typeof import('vitest')['chai']
   const checkUpdate: typeof import('./src/composables/electron')['checkUpdate']
   const closeApp: typeof import('./src/composables/electron')['closeApp']
@@ -149,6 +150,7 @@ declare global {
   const unrefElement: typeof import('@vueuse/core')['unrefElement']
   const until: typeof import('@vueuse/core')['until']
   const updateAvailable: typeof import('./src/composables/electron')['updateAvailable']
+  const updateCancelled: typeof import('./src/composables/electron')['updateCancelled']
   const updateError: typeof import('./src/composables/electron')['updateError']
   const updateNotAvailable: typeof import('./src/composables/electron')['updateNotAvailable']
   const useAbs: typeof import('@vueuse/math')['useAbs']
@@ -367,6 +369,7 @@ declare module '@vue/runtime-core' {
     readonly axios: UnwrapRef<typeof import('axios')['default']>
     readonly beforeAll: UnwrapRef<typeof import('vitest')['beforeAll']>
     readonly beforeEach: UnwrapRef<typeof import('vitest')['beforeEach']>
+    readonly cancelDownloadUpdate: UnwrapRef<typeof import('./src/composables/electron')['cancelDownloadUpdate']>
     readonly chai: UnwrapRef<typeof import('vitest')['chai']>
     readonly checkUpdate: UnwrapRef<typeof import('./src/composables/electron')['checkUpdate']>
     readonly closeApp: UnwrapRef<typeof import('./src/composables/electron')['closeApp']>
@@ -498,6 +501,7 @@ declare module '@vue/runtime-core' {
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
     readonly updateAvailable: UnwrapRef<typeof import('./src/composables/electron')['updateAvailable']>
+    readonly updateCancelled: UnwrapRef<typeof import('./src/composables/electron')['updateCancelled']>
     readonly updateError: UnwrapRef<typeof import('./src/composables/electron')['updateError']>
     readonly updateNotAvailable: UnwrapRef<typeof import('./src/composables/electron')['updateNotAvailable']>
     readonly useAbs: UnwrapRef<typeof import('@vueuse/math')['useAbs']>

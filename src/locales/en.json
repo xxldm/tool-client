@@ -1,6 +1,7 @@
 {
   "app": "application",
   "appName": "toolbox",
+  "cancel": "Cancel",
   "confirm": "confirm",
   "content": "content",
   "date": {
@@ -25,6 +26,7 @@
   },
   "no": "no",
   "reboot": "reboot",
+  "retry": "Retry",
   "settings": {
     "label": {
       "allowPrerelease": "Whether to update the beta version",
@@ -37,11 +39,14 @@
     "settings": "set up"
   },
   "update": {
+    "checkUpdate": "Get updates...",
     "currentVersion": "current version",
     "downloading": "Downloading update",
+    "error": "Failed to get update",
+    "isSkipUpdate": "This version has been skipped",
     "latestVersion": "is the latest version",
     "newVersion": "new version detected",
-    "skipUpdate": "Automatic update skip this version",
+    "skipUpdate": "skip this version",
     "title": "Update the app",
     "update": "renew"
   },

@@ -26,6 +26,10 @@ contextBridge.exposeInMainWorld("electron", {
     ipcRenderer.on("updateNotAvailable", listener);
   },
   downloadUpdate: () => ipcRenderer.invoke("downloadUpdate"),
+  cancelDownloadUpdate: () => ipcRenderer.invoke("cancelDownloadUpdate"),
+  updateCancelled: (listener: (event: IpcRendererEvent, updateInfo: UpdateInfo) => void) => {
+    ipcRenderer.on("updateCancelled", listener);
+  },
   downloadProgress: (listener: (event: IpcRendererEvent, progressInfo: ProgressInfo) => void) => {
     ipcRenderer.on("downloadProgress", listener);
   },

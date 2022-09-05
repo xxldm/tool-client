@@ -12,8 +12,10 @@ import Pages from "vite-plugin-pages";
 import { VitePWA } from "vite-plugin-pwa";
 import Layouts from "vite-plugin-vue-layouts";
 
-export default ({ mode }: ConfigEnv): UserConfigExport => {
-  rmSync("release", { recursive: true, force: true });
+export default ({ mode, command }: ConfigEnv): UserConfigExport => {
+  if (command === "build") {
+    rmSync("release", { recursive: true, force: true });
+  }
   const env = loadEnv(mode, __dirname, ["VSCODE_"]);
   const isDebug = env.VSCODE_DEBUG !== undefined;
   return {

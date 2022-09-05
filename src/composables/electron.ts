@@ -16,6 +16,10 @@ export const updateAvailable = window.electron?.updateAvailable;
 export const updateNotAvailable = window.electron?.updateNotAvailable;
 // 开始下载更新
 export const downloadUpdate = window.electron?.downloadUpdate;
+// 取消下载更新
+export const cancelDownloadUpdate = window.electron?.cancelDownloadUpdate;
+// 取消了下载
+export const updateCancelled = window.electron?.updateCancelled;
 // 更新下载进度
 export const downloadProgress = window.electron?.downloadProgress;
 // 更新下载完成

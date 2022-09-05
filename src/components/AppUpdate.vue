@@ -5,10 +5,115 @@
     :title="t('update.title')"
     center
     @open="open"
-    @close="close"
+    @closed="closed"
   >
     <el-result
-      v-show="!updateStore.newVersion"
+      v-if="updateStore.errorMessage"
+      icon="error"
+      :title="`${t('update.error')}：${updateStore.errorMessage}`"
+      :sub-title="`${t('update.currentVersion')}：${updateStore.currentVersion}`"
+    >
+      <template #extra>
+        <el-button
+          type="primary"
+          @click="updateStore.showDialog = false"
+        >
+          {{ t("confirm") }}
+        </el-button>
+        <el-button
+          type="primary"
+          @click="errorRetry"
+        >
+          {{ t("retry") }}
+        </el-button>
+      </template>
+    </el-result>
+    <el-result
+      v-else-if="updateStore.newVersion"
+      v-loading="updateStore.loading"
+      :element-loading-text="t('update.checkUpdate')"
+      icon="warning"
+      :title="`${t('update.newVersion')}：${updateInfo.version}`"
+      :sub-title="`${t('update.currentVersion')}：${updateStore.currentVersion}`"
+    >
+      <template #extra>
+        <el-descriptions
+          :column="1"
+          direction="vertical"
+        >
+          <el-descriptions-item
+            v-if="!updateStore.downloaded && !updateStore.downloading"
+            :label="`${t('yes') + t('no') + t('update.update')}？${
+              updateInfo.files[0].size
+                ? `(${formatBytes(updateInfo.files[0].size)})`
+                : ''
+            }`"
+          >
+            <el-button
+              type="primary"
+              @click="downloadUpdateClick"
+            >
+              {{ t("download") + t("update.update") }}
+            </el-button>
+            <el-button
+              :disabled="isSkip"
+              type="primary"
+              @click="skipUpdate"
+            >
+              {{ isSkip ? t("update.isSkipUpdate") : t("update.skipUpdate") }}
+            </el-button>
+          </el-descriptions-item>
+          <el-descriptions-item
+            v-else-if="updateStore.downloading"
+            :label="`${t('update.downloading')}！`"
+          >
+            {{ formatBytes(progressInfo?.transferred) }}/{{ formatBytes(progressInfo?.total) }}
+            ({{ formatBytes(progressInfo?.bytesPerSecond) }}/s)
+            <el-progress
+              :text-inside="progressInfo?.percent !== undefined"
+              :show-text="progressInfo?.percent !== undefined"
+              :stroke-width="20"
+              :percentage="
+                progressInfo?.percent
+                  ? Math.round(progressInfo?.percent)
+                  : 100
+              "
+              :indeterminate="!progressInfo?.percent"
+            />
+            <el-button
+              m-t-2
+              type="primary"
+              @click="cancelDownloadUpdateClick()"
+            >
+              {{ t("cancel") }}
+            </el-button>
+          </el-descriptions-item>
+          <el-descriptions-item
+            v-else
+            :label="`${t('reboot')}${t('app')}？`"
+          >
+            <el-button
+              type="primary"
+              @click="quitAndInstall()"
+            >
+              {{ t("reboot") }}
+            </el-button>
+          </el-descriptions-item>
+          <el-descriptions-item
+            :label="`${t('update.update')}${t('content')}？`"
+            :min-width="500"
+          >
+            <div
+              class="markdown-body"
+              v-html="updateInfo.releaseNotes"
+            />
+            {{ updateInfo.releaseNotes }}
+          </el-descriptions-item>
+        </el-descriptions>
+      </template>
+    </el-result>
+    <el-result
+      v-else
       v-loading="updateStore.loading"
       icon="success"
       :title="`${t('update.latestVersion')}！`"
@@ -23,84 +128,6 @@
             t("confirm")
           }}
         </el-button>
-      </template>
-    </el-result>
-    <el-result
-      v-if="updateStore.newVersion"
-      v-loading="updateStore.loading"
-      icon="warning"
-      :title="`${$t('update.newVersion')}：${updateInfo.version}`"
-      :sub-title="`${$t('update.currentVersion')}：${updateStore.currentVersion}`"
-    >
-      <template #extra>
-        <el-descriptions
-          :column="1"
-          direction="vertical"
-        >
-          <el-descriptions-item
-            v-show="!updateStore.downloaded && !updateStore.downloading"
-            :label="`${$t('yes') + $t('no') + $t('update.update')}？${
-              updateInfo.files[0].size
-                ? `(${formatBytes(updateInfo.files[0].size)})`
-                : ''
-            }`"
-          >
-            <el-button
-              type="primary"
-              @click="downloadUpdateClick"
-            >
-              {{ $t("download") + $t("update.update") }}
-            </el-button>
-            <el-button
-              v-show="!isSkip"
-              type="primary"
-              @click="skipUpdate"
-            >
-              {{ t("update.skipUpdate") }}
-            </el-button>
-          </el-descriptions-item>
-          <el-descriptions-item
-            v-if="!updateStore.downloaded && updateStore.downloading"
-            :label="`${t('update.downloading')}！`"
-          >
-            {{ formatBytes(progressInfo.transferred) }}/{{
-              formatBytes(progressInfo.total)
-            }}({{ formatBytes(progressInfo.bytesPerSecond) }}/s)
-            <el-progress
-              :text-inside="progressInfo.percent !== undefined"
-              :show-text="progressInfo.percent !== undefined"
-              :stroke-width="26"
-              :percentage="
-                progressInfo.percent
-                  ? Math.round(progressInfo.percent)
-                  : 100
-              "
-              :indeterminate="!progressInfo.percent"
-            />
-          </el-descriptions-item>
-          <el-descriptions-item
-            v-show="updateStore.downloaded"
-            :label="`${t('reboot')}${t('app')}？`"
-          >
-            <el-button
-              type="primary"
-              @click="quitAndInstall()"
-            >
-              {{
-                t("reboot")
-              }}
-            </el-button>
-          </el-descriptions-item>
-          <el-descriptions-item
-            :label="`${t('update.update')}${t('content')}？`"
-            :min-width="500"
-          >
-            <div
-              class="markdown-body"
-              v-html="updateInfo.releaseNotes"
-            />
-          </el-descriptions-item>
-        </el-descriptions>
       </template>
     </el-result>
   </el-dialog>
@@ -124,34 +151,64 @@ const skipUpdate = () => {
 // 判断是否是跳过的版本
 const isSkip = computed(() => updateStore.skipVersion === updateInfo.version);
 
+// 获取更新
+const getUpdate = () => {
+  updateStore.loading = true;
+  checkUpdate();
+};
+
 // 获取到更新
 updateAvailable((_event, data) => {
-  // 更新新版本信息
+  // 更新更新信息
   updateInfo = data;
-  // 设置新版本状态为true
+  // 设置更新状态为true
   updateStore.newVersion = true;
   // 设置获取状态为false
   updateStore.loading = false;
-  // 打开更新窗口
-  updateStore.showDialog = true;
+  if (!isSkip) {
+    // 不是跳过版本, 打开更新窗口
+    updateStore.showDialog = true;
+  }
 });
+
 // 获取结果没有更新
 updateNotAvailable(() => {
   // 设置获取状态为false
   updateStore.loading = false;
 });
-// 下载更新点击
+
+// 点击下载更新
 const downloadUpdateClick = () => {
   // 开始下载更新
   downloadUpdate();
   // 设置下载中状态为true
   updateStore.downloading = true;
 };
+
+// 点击取消下载更新
+const cancelDownloadUpdateClick = () => {
+  // 取消下载更新
+  cancelDownloadUpdate();
+};
+
+// 取消了下载
+updateCancelled((_event, data) => {
+  // 清除更新信息
+  updateInfo = {} as UpdateInfo;
+  updateStore.newVersion = false;
+  // 清除下载信息
+  progressInfo = {} as ProgressInfo;
+  updateStore.downloading = false;
+  // 重新获取更新
+  getUpdate();
+});
+
 // 下载进度
 downloadProgress((_event, data) => {
   // 更新下载进度
   progressInfo = data;
 });
+
 // 下载完成
 downloadDownloaded(() => {
   // 更新下载中状态为false
@@ -162,57 +219,60 @@ downloadDownloaded(() => {
   updateStore.showDialog = true;
 });
 
-// 窗口加载了, 自动获取更新
-onMounted(() => {
-  // 获取更新
-  checkUpdate();
-  // 获取状态设置
-  updateStore.loading = true;
+// 更新出错
+updateError((_event, error) => {
+  updateStore.loading = false;
+  updateStore.errorMessage = error.message;
 });
+
+// 更新出错 重试按钮
+const errorRetry = () => {
+  // 有可能新版本不存在了导致的更新出错, 清除更新信息
+  updateInfo = {} as UpdateInfo;
+  updateStore.newVersion = false;
+  // 有可能下载失败导致的错误, 清除下载信息
+  progressInfo = {} as ProgressInfo;
+  updateStore.downloading = false;
+  // 清除错误信息
+  updateStore.errorMessage = undefined;
+  // 重新获取更新
+  getUpdate();
+};
+
+// 窗口加载了, 自动获取更新
+onMounted(getUpdate);
 
 /**
  * 打开更新窗口事件
- * 3种触发方式
- * 1.获取到新版本
- * 2.下载完成
- * 3.手动点击获取更新按钮
  */
 const open = () => {
-  /**
-   * updateStore.newVersion 为 true 几种可能
-   * 获取到新版本 - 不需要处理
-   * 下载中/下载完成 关闭窗口, 下载完成自动/手动 打开窗口 - 不需要处理
-   */
+  // 如果有错误, 直接调用出错重试方法
+  if (updateStore.errorMessage) {
+    return errorRetry();
+  }
+  // 正在获取更新 - 不需要处理
+  if (updateStore.loading) {
+    return;
+  }
+  // 有更新信息 - 不需要处理
   if (updateStore.newVersion) {
     return;
   }
-  // 已经在获取新版本 - 不需要处理
-  if (updateStore.loading) {
-    return;
-  }
-  /**
-   * 既没有新版本, 也没有获取新版本 几种可能
-   * 获取过, 没有获取到新版本 - 重新获取
-   * 获取到了新版本, 没有点击下载, 然后关闭了窗口 - 重新获取
-   */
-  checkUpdate();
+  // 没有更新信息, 也没有在获取更新信息, 获取更新
+  getUpdate();
 };
 
-const close = () => {
-  // 如果正在获取新版本 - 不需要处理
+const closed = () => {
+  // 如果正在获取更新 - 不需要处理
   if (updateStore.loading) {
     return;
   }
-  // 没有新版本 - 不需要处理
-  if (!updateStore.newVersion) {
+  // 下载中或者下载完成 - 不需要处理
+  if (updateStore.downloading || updateStore.downloaded) {
     return;
   }
-  // 有新版本, 但没有下载, 也不是下载完成了
-  if (!updateStore.downloading && !updateStore.downloaded) {
-    // 清除状态数据, 下次打开重新获取版本
-    updateInfo = {} as UpdateInfo;
-    progressInfo = {} as ProgressInfo;
-    updateStore.newVersion = false;
-  }
+  // 没有在获取更新, 也没有下载. 清除状态数据, 下次打开重新获取版本
+  updateInfo = {} as UpdateInfo;
+  updateStore.newVersion = false;
 };
 </script>
