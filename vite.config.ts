@@ -16,7 +16,6 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
   if (command === "build") {
     rmSync("release", { recursive: true, force: true });
   }
-
   const env = loadEnv(mode, __dirname, ["VSCODE_"]);
   const isDebug = env.VSCODE_DEBUG !== undefined;
   return {
