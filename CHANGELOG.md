@@ -1,3 +1,12 @@
+## [0.0.6-beta.0](https://github.com/xxldm/tool-client/compare/v0.0.5...v0.0.6-beta.0) (2022-09-05)
+
+
+### Bug Fixes
+
+* 有新版本不会自动打开更新窗口 ([81d74f8](https://github.com/xxldm/tool-client/commit/81d74f8d33f6714e4a83a3d1a6eb168ec414e499))
+
+
+
 ## [0.0.5](https://github.com/xxldm/tool-client/compare/v0.0.5-beta.1...v0.0.5) (2022-09-05)
 
 
