@@ -1,2 +1,7 @@
-export const isDark = useDark({ storage: myStorage });
+export const isDark = useDark({
+  storageKey: "themeSource",
+  valueDark: "dark",
+  valueLight: "light",
+  storage: myStorage,
+});
 export const toggleDark = useToggle(isDark);

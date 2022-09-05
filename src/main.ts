@@ -1,4 +1,5 @@
 import "@unocss/reset/normalize.css";
+import "github-markdown-css/github-markdown.css";
 import "./styles/main.scss";
 import "uno.css";
 

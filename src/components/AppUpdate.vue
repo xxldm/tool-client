@@ -12,6 +12,7 @@
       icon="error"
       :title="`${t('update.error')}：${updateStore.errorMessage}`"
       :sub-title="`${t('update.currentVersion')}：${updateStore.currentVersion}`"
+      p="0!"
     >
       <template #extra>
         <el-button
@@ -35,6 +36,7 @@
       icon="warning"
       :title="`${t('update.newVersion')}：${updateInfo.version}`"
       :sub-title="`${t('update.currentVersion')}：${updateStore.currentVersion}`"
+      p="0!"
     >
       <template #extra>
         <el-descriptions
@@ -100,14 +102,34 @@
             </el-button>
           </el-descriptions-item>
           <el-descriptions-item
-            :label="`${t('update.update')}${t('content')}？`"
+            :label="`${t('update.update')}${t('content')}:`"
             :min-width="500"
+            class-name="p-0!"
           >
-            <div
-              class="markdown-body"
-              v-html="updateInfo.releaseNotes"
-            />
-            {{ updateInfo.releaseNotes }}
+            <el-scrollbar
+              height="400px"
+              view-class="flex flex-gap-2 flex-col"
+            >
+              <el-card
+                v-for="releaseNote in updateInfo.releaseNotes as Array<{
+                  readonly version: string;
+                  readonly note: string | null;
+                }>"
+                :key="releaseNote.version"
+                shadow="never"
+              >
+                <el-divider
+                  class="el-divider"
+                  content-position="left"
+                >
+                  <h1>v{{ releaseNote.version }}</h1>
+                </el-divider>
+                <div
+                  class="markdown-body"
+                  v-html="releaseNote.note"
+                />
+              </el-card>
+            </el-scrollbar>
           </el-descriptions-item>
         </el-descriptions>
       </template>
@@ -118,6 +140,7 @@
       icon="success"
       :title="`${t('update.latestVersion')}！`"
       :sub-title="`${t('update.currentVersion')}：${updateStore.currentVersion}`"
+      p="0!"
     >
       <template #extra>
         <el-button
@@ -149,7 +172,7 @@ const skipUpdate = () => {
 };
 
 // 判断是否是跳过的版本
-const isSkip = computed(() => updateStore.skipVersion === updateInfo.version);
+const isSkip = $computed(() => updateStore.skipVersion === updateInfo.version);
 
 // 获取更新
 const getUpdate = () => {
@@ -276,3 +299,11 @@ const closed = () => {
   updateStore.newVersion = false;
 };
 </script>
+
+<style scoped lang="scss">
+.el-divider {
+  :deep(.el-divider__text) {
+    background-color: var(--el-card-bg-color);
+  }
+}
+</style>

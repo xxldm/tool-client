@@ -1,0 +1,5 @@
+owner: xxldm
+repo: tool-client
+provider: github
+releaseType: release
+updaterCacheDirName: tool-client-updater

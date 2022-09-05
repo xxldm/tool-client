@@ -1,4 +1,4 @@
-import { type MenuItem, app, BrowserWindow, ipcMain, Menu, Tray } from "electron";
+import { type MenuItem, app, BrowserWindow, ipcMain, Menu, nativeTheme, shell, Tray } from "electron";
 import Store from "electron-store";
 import type { CancellationToken, ProgressInfo, UpdateInfo } from "electron-updater";
 import { autoUpdater } from "electron-updater";
@@ -35,6 +35,16 @@ if (!app.requestSingleInstanceLock()) {
   process.exit(0);
 }
 
+const isDebug = process.env.npm_lifecycle_event === "dev";
+
+if (isDebug) {
+  Object.defineProperty(app, "isPackaged", {
+    get() {
+      return true;
+    },
+  });
+}
+
 let win: BrowserWindow | null = null;
 
 // 创建持久化
@@ -53,7 +63,7 @@ function init() {
   }
   initIpc();
   initListener();
-  check();
+  initAppStatus();
 }
 
 /**
@@ -61,6 +71,9 @@ function init() {
  */
 function initUpdater() {
   let cancellationToken: CancellationToken | undefined;
+  if (isDebug) {
+    autoUpdater.updateConfigPath = join(app.getAppPath(), "app-update.yml");
+  }
   // 关闭自动下载
   autoUpdater.autoDownload = false;
   //
@@ -178,15 +191,25 @@ function initListener() {
       app.quit();
     }
   });
+  app.on("web-contents-created", (e, webContents) => {
+    webContents.addListener("new-window", (event, url) => {
+      event.preventDefault();
+      if (url.startsWith("http")) {
+        shell.openExternal(url);
+      }
+    });
+  });
 }
 
 /**
- * 检查程序以外的修改
+ * 初始化程序状态
  */
-function check() {
+function initAppStatus() {
   // 以防从其余地方干掉了注册表，但设置项没有重置，每次打开读取注册表，重置设置项
   const { openAtLogin } = app.getLoginItemSettings();
   store.set("openAtLogin", openAtLogin);
+  // 打开程序的时候从配置文件加载,用户暗黑模式设置
+  configProcess("themeSource", store.get("themeSource"));
 }
 
 /**
@@ -213,7 +236,7 @@ function createWindow() {
     },
   });
 
-  if (app.isPackaged) {
+  if (!isDebug && app.isPackaged) {
     win.loadFile(join(app.getAppPath(), "dist/index.html"));
   } else {
     win.loadURL(env.VITE_DEV_SERVER_URL);
@@ -241,7 +264,7 @@ function createTray() {
  * 创建主菜单
  */
 function createMenu() {
-  Menu.setApplicationMenu(app.isPackaged
+  Menu.setApplicationMenu(!isDebug && app.isPackaged
     ? null
     : Menu.buildFromTemplate([
       {
@@ -275,6 +298,13 @@ function configProcess(key: string, value: string) {
       break;
     case "allowPrerelease":
       autoUpdater.allowPrerelease = value === "true";
+      break;
+    case "themeSource":
+      if (value === "auto") {
+        nativeTheme.themeSource = "system";
+        break;
+      }
+      nativeTheme.themeSource = value as "light" | "dark";
       break;
     default:
       break;
