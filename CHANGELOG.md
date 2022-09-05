@@ -1,3 +1,18 @@
+## [0.0.5](https://github.com/xxldm/tool-client/compare/v0.0.5-beta.1...v0.0.5) (2022-09-05)
+
+
+### Bug Fixes
+
+* 假BUG5 ([d35b9cd](https://github.com/xxldm/tool-client/commit/d35b9cd3e2d786f68d593e88e4bd620ac25b5081))
+* 假BUG6 ([b68ec76](https://github.com/xxldm/tool-client/commit/b68ec7679fd8369648e3668b3a3b660a4e5e2580))
+
+
+### Features
+
+* 假功能6 ([b6ba4a4](https://github.com/xxldm/tool-client/commit/b6ba4a4daf066469da5aa0c394b23822ae63ea36))
+
+
+
 ## [0.0.5-beta.1](https://github.com/xxldm/tool-client/compare/v0.0.5-beta.0...v0.0.5-beta.1) (2022-09-05)
 
 
