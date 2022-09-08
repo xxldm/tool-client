@@ -59,6 +59,7 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getCurrentVersion: typeof import('./src/composables/electron')['getCurrentVersion']
+  const getDisplayCount: typeof import('./src/composables/electron')['getDisplayCount']
   const getPlatform: typeof import('./src/composables/electron')['getPlatform']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
@@ -410,6 +411,7 @@ declare module '@vue/runtime-core' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getCurrentVersion: UnwrapRef<typeof import('./src/composables/electron')['getCurrentVersion']>
+    readonly getDisplayCount: UnwrapRef<typeof import('./src/composables/electron')['getDisplayCount']>
     readonly getPlatform: UnwrapRef<typeof import('./src/composables/electron')['getPlatform']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>

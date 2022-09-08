@@ -5,21 +5,67 @@
   >
     {{ t("settings.system") }}
   </el-divider>
-
-  <el-descriptions v-if="isElectron">
-    <el-descriptions-item
+  <div
+    v-if="isElectron"
+    flex="~ gap-40 wrap"
+    m-10
+    items-center
+  >
+    <div
       v-if="!getPlatform().isLinux && isPackage"
-      :label="t('settings.label.openAtLogin')"
+      flex="~ gap-4"
+      items-center
     >
+      <label>{{ t('settings.label.openAtLogin') }}:</label>
       <el-switch v-model="settingsStore.openAtLogin" />
-    </el-descriptions-item>
-    <el-descriptions-item
+    </div>
+    <div
       v-if="isPackage"
-      :label="t('settings.label.allowPrerelease')"
+      flex="~ gap-4"
+      items-center
     >
+      <label>{{ t('settings.label.allowPrerelease') }}:</label>
       <el-switch v-model="settingsStore.allowPrerelease" />
-    </el-descriptions-item>
-  </el-descriptions>
+    </div>
+    <div
+      v-if="isPackage"
+      flex="~ gap-4"
+      items-center
+    >
+      <label>{{ t('settings.label.windowMode') }}:</label>
+      <el-switch
+        v-model="settingsStore.isNormal"
+        :active-text="t('settings.label.wallpaperMode')"
+        :inactive-text="t('window')"
+        :active-value="false"
+        :inactive-value="true"
+      />
+      <div
+        v-if="!settingsStore.isNormal"
+        flex="~ gap-4"
+        items-center
+      >
+        <el-radio-group v-model="settingsStore.displayIndex">
+          <el-radio
+            m="r-2!"
+            :label="-1"
+            border
+          >
+            {{ t('main') + t('settings.label.display') }}
+          </el-radio>
+          <el-radio
+            v-for="i of getDisplayCount()"
+            :key="i"
+            m="r-2!"
+            :label="i - 1"
+            border
+          >
+            {{ t('settings.label.display') }} {{ i }}
+          </el-radio>
+        </el-radio-group>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>

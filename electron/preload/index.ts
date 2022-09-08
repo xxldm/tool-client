@@ -4,6 +4,7 @@ contextBridge.exposeInMainWorld("electron", {
   // 获取信息
   getPlatform: () => ipcRenderer.sendSync("getPlatform"),
   isPackage: () => ipcRenderer.sendSync("isPackage"),
+  getDisplayCount: () => ipcRenderer.sendSync("getDisplayCount"),
 
   // 持久化
   getItem: (key: string) => ipcRenderer.sendSync("getItem", [key]),

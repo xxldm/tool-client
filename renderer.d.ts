@@ -11,6 +11,7 @@ export interface Electron {
   // 获取信息
   getPlatform(): platform;
   isPackage(): boolean;
+  getDisplayCount(): number;
 
   // 持久化
   getItem(key: string): string | null;

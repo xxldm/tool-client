@@ -6,6 +6,8 @@ export const isPackage = window.electron?.isPackage();
 export const getPlatform = window.electron?.getPlatform;
 // 关闭应用
 export const closeApp = window.electron?.closeApp;
+// 获取显示器数量
+export const getDisplayCount = window.electron?.getDisplayCount;
 // 获取版本
 export const getCurrentVersion = window.electron?.getCurrentVersion;
 // 检查更新

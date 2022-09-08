@@ -16,6 +16,7 @@
     >
       <template #extra>
         <el-button
+          plain
           type="primary"
           @click="updateStore.showDialog = false"
         >
@@ -144,7 +145,7 @@
     >
       <template #extra>
         <el-button
-          type="primary"
+          plain
           @click="updateStore.showDialog = false"
         >
           {{

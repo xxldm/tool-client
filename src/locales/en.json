@@ -20,6 +20,7 @@
   },
   "get": "get",
   "hourMeter": "timer",
+  "main": "main",
   "menu": {
     "goMain": "Home",
     "main": "front page"
@@ -30,7 +31,10 @@
   "settings": {
     "label": {
       "allowPrerelease": "Whether to update the beta version",
-      "openAtLogin": "Automatically run at startup"
+      "display": "window",
+      "openAtLogin": "Automatically run at startup",
+      "wallpaperMode": "",
+      "windowMode": "window display mode"
     },
     "system": "system settings"
   },
@@ -50,5 +54,6 @@
     "title": "Update the app",
     "update": "renew"
   },
+  "window": "",
   "yes": "Yes"
 }

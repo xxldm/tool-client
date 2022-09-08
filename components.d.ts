@@ -30,6 +30,8 @@ declare module '@vue/runtime-core' {
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElProgress: typeof import('element-plus/es')['ElProgress']
+    ElRadio: typeof import('element-plus/es')['ElRadio']
+    ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElResult: typeof import('element-plus/es')['ElResult']
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
