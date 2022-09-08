@@ -1,3 +1,12 @@
+## [0.0.6-beta.1](https://github.com/xxldm/tool-client/compare/v0.0.6-beta.0...v0.0.6-beta.1) (2022-09-08)
+
+
+### Features
+
+* 类壁纸模式 ([490c7b5](https://github.com/xxldm/tool-client/commit/490c7b5622db4de1bffcc6a27aefb2e6d60527fc))
+
+
+
 ## [0.0.6-beta.0](https://github.com/xxldm/tool-client/compare/v0.0.5...v0.0.6-beta.0) (2022-09-05)
 
 
