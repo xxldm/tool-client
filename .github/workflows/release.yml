@@ -14,17 +14,11 @@ jobs:
       matrix:
         os: [windows-latest, ubuntu-latest]
         node-version: [14]
-        pnpm-version: [7]
     steps:
       - name: 检出代码
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-
-      - name: 初始化 pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: ${{ matrix.pnpm-version }}
 
       - name: 初始化 node
         uses: actions/setup-node@v3
@@ -32,23 +26,23 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: 安装依赖
-        run: pnpm install
+        run: npm install
 
       - name: esLint 检查
-        run: pnpm run lint
+        run: npm run lint
 
       - name: typescript 检查
-        run: pnpm run typecheck
+        run: npm run typecheck
 
       - name: 执行测试
-        run: pnpm run test
+        run: npm run test
 
       - name: 创建 github release, 生成 release 内容
-        run: pnpm dlx changelogithub
+        run: npx changelogithub
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: 编译 & 发布
-        run: pnpm build
+        run: npm build
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

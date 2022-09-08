@@ -17,7 +17,6 @@ jobs:
       matrix:
         os: [windows-latest, ubuntu-latest]
         node-version: [14]
-        pnpm-version: [7]
     env:
       ELECTRON_CACHE: ${{ github.workspace }}/.cache/electron
       ELECTRON_BUILDER_CACHE: ${{ github.workspace }}/.cache/electron-builder
