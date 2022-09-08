@@ -65,7 +65,7 @@ jobs:
         run: pnpm run test
 
       - name: 编译
-        run: pnpm build -p never
+        run: npm run build -- -p never
 
       - name: 上传构件
         uses: actions/upload-artifact@v3
