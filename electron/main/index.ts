@@ -76,16 +76,24 @@ app.whenReady().then(() => {
  */
 function initAppListener() {
   app.on("window-all-closed", () => {
+    // 默认不监听就是退出
     if (store.get("isNormal") === "true") {
       app.quit();
     }
+    // 该方法主要拦截 类壁纸显示模式的退出
+    // 类壁纸模式没有手动关闭窗口的方式, 所以窗口关闭了一定是外力(资源管理器崩溃等)
+    // 这个时候需要打开新窗口, 而不是关闭
   });
   app.on("web-contents-created", (_event, webContents) => {
-    webContents.addListener("new-window", (event, url) => {
-      event.preventDefault();
+    webContents.setWindowOpenHandler(({ url }) => {
       if (url.startsWith("http")) {
+        // 如果是完整的网址, 直接调用系统浏览器打开网址, 而不是新建一个窗口
         shell.openExternal(url);
+        // 拒绝打开新窗口
+        return { action: "deny" };
       }
+      // 允许打开新窗口
+      return { action: "allow" };
     });
   });
 }
@@ -99,7 +107,7 @@ function initAppStatus() {
   const oldValue = store.get("themeSource");
   store.set("openAtLogin", openAtLogin);
   // 打开程序的时候从配置文件加载,用户暗黑模式设置
-  configProcess("themeSource", oldValue, store.get("themeSource")!);
+  configProcess("themeSource", oldValue, store.get("themeSource", "auto")!);
 }
 
 export { app, ipcMain, window, store, platform, isDebug, autoUpdater, nativeTheme, env, screen };

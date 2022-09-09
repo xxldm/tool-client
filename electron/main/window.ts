@@ -2,12 +2,11 @@ import { type BrowserWindowConstructorOptions, BrowserWindow } from "electron";
 import { join } from "path";
 
 import { app, env, isDebug, screen, store, window } from ".";
-import { getElectronWindowHandle, getProgmanHandle, removeMouseAndKeyboardListener, setParentToDesktop } from "./win32";
 
 /**
  * 创建窗口
  */
-export function createWindow() {
+export async function createWindow() {
   const isNormal = store.get("isNormal", "true") === "true";
   let newWindow;
   const config: BrowserWindowConstructorOptions = {};
@@ -52,6 +51,7 @@ export function createWindow() {
     // 监听窗口位置变化, 保存参数
     newWindow.on("move", debounceSaveBounds());
   } else {
+    const { getElectronWindowHandle, getProgmanHandle, removeMouseAndKeyboardListener, setParentToDesktop } = await import("./win32");
     // 无边框
     config.frame = false;
     newWindow = new BrowserWindow({

@@ -28,7 +28,7 @@
       <el-switch v-model="settingsStore.allowPrerelease" />
     </div>
     <div
-      v-if="isPackage"
+      v-if="getPlatform().isWin && isPackage"
       flex="~ gap-4"
       items-center
     >
