@@ -2,7 +2,13 @@
   "app": "应用",
   "appName": "工具箱",
   "cancel": "取消",
-  "confirm": "确定",
+  "confirm": {
+    "confirm": "确定",
+    "noSaveGoPage": "未保存的内容会丢失, 确定前往其他页面?"
+  },
+  "confitm": {
+    "save": "是否保存已修改内容?"
+  },
   "content": "内容",
   "date": {
     "unit": {
@@ -11,6 +17,7 @@
       "minute": "分",
       "month": "月",
       "second": "秒",
+      "week": "周",
       "year": "年"
     }
   },
@@ -19,8 +26,15 @@
     "PageNotFound": "页面走丢了"
   },
   "get": "获取",
-  "hourMeter": "计时器",
   "main": "主",
+  "mainLayout": {
+    "component": {
+      "label": {
+        "Countdown": "倒计时",
+        "HourMeter": "计时器"
+      }
+    }
+  },
   "menu": {
     "goMain": "回首页",
     "main": "首页"
@@ -37,6 +51,13 @@
       "windowMode": "窗口显示模式"
     },
     "system": "系统设置"
+  },
+  "shortcuts": {
+    "button": {
+      "title": {
+        "main-edit": "首页布局编辑"
+      }
+    }
   },
   "system": {
     "closeApp": "关闭",

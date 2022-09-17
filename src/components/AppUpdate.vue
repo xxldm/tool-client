@@ -20,7 +20,7 @@
           type="primary"
           @click="updateStore.showDialog = false"
         >
-          {{ t("confirm") }}
+          {{ t("confirm.confirm") }}
         </el-button>
         <el-button
           type="primary"
@@ -149,7 +149,7 @@
           @click="updateStore.showDialog = false"
         >
           {{
-            t("confirm")
+            t("confirm.confirm")
           }}
         </el-button>
       </template>

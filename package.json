@@ -38,6 +38,7 @@
     "electron-updater": "^5.2.1",
     "element-plus": "^2.2.16",
     "github-markdown-css": "^5.1.0",
+    "lunar-fun": "^2.0.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.21",
     "vue": "^3.2.38",

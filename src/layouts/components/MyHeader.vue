@@ -3,8 +3,9 @@
     flex="~ gap-2"
     justify-between
     items-center
+    relative
     b-b-1
-    style="border-bottom-color: var(--el-menu-border-color);"
+    style="border-color: var(--el-border-color);"
   >
     <my-menu
       flex-grow
@@ -14,7 +15,3 @@
     <my-system-menu />
   </div>
 </template>
-
-<script lang="ts" setup>
-
-</script>

@@ -2,8 +2,15 @@
   "app": "application",
   "appName": "toolbox",
   "cancel": "Cancel",
-  "confirm": "confirm",
+  "confirm": {
+    "confirm": "confirm",
+    "noSaveGoPage": "Unsaved content will be lost, are you sure you want to go to another page?"
+  },
+  "confitm": {
+    "save": ""
+  },
   "content": "content",
+  "countdown": "countdown",
   "date": {
     "unit": {
       "day": "sky",
@@ -11,6 +18,7 @@
       "minute": "Minute",
       "month": "moon",
       "second": "second",
+      "week": "week",
       "year": "year"
     }
   },
@@ -21,6 +29,13 @@
   "get": "get",
   "hourMeter": "timer",
   "main": "main",
+  "mainLayout": {
+    "component": {
+      "label": {
+        "Countdown": ""
+      }
+    }
+  },
   "menu": {
     "goMain": "Home",
     "main": "front page"
@@ -33,10 +48,17 @@
       "allowPrerelease": "Whether to update the beta version",
       "display": "window",
       "openAtLogin": "Automatically run at startup",
-      "wallpaperMode": "",
+      "wallpaperMode": "class wallpaper",
       "windowMode": "window display mode"
     },
     "system": "system settings"
+  },
+  "shortcuts": {
+    "button": {
+      "title": {
+        "main-edit": "Homepage layout editor"
+      }
+    }
   },
   "system": {
     "closeApp": "closure",
@@ -54,6 +76,6 @@
     "title": "Update the app",
     "update": "renew"
   },
-  "window": "",
+  "window": "window",
   "yes": "Yes"
 }

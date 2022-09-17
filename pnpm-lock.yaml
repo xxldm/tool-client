@@ -26,6 +26,7 @@ specifiers:
   eslint-plugin-simple-import-sort: ^8.0.0
   github-markdown-css: ^5.1.0
   jsdom: ^20.0.0
+  lunar-fun: ^2.0.0
   nprogress: ^0.2.0
   pinia: ^2.0.21
   pnpm: ^7.9.5
@@ -58,6 +59,7 @@ dependencies:
   electron-updater: 5.2.1
   element-plus: 2.2.16_vue@3.2.38
   github-markdown-css: 5.1.0
+  lunar-fun: 2.0.0
   nprogress: 0.2.0
   pinia: 2.0.21_pj7ch6rmow6odq73xb5hfvge3q
   vue: 3.2.38
@@ -6340,6 +6342,10 @@ packages:
     resolution: {integrity: sha512-CHqbAq7NFlW3RSnoWXLJBxCWaZVBrfa9UEHId2M3AW8iEBurbqduNexEUCGc3SHc6iCYXNJCDi903LajSVAEPQ==}
     engines: {node: '>=12'}
     dev: true
+
+  /lunar-fun/2.0.0:
+    resolution: {integrity: sha512-vdsuhyjg8P3JOMTzXYbRr1a7p1QL3p6KXSYrk8AeZgNSpv5IDUzKs+rCXKyxJY058ZusA6Vy0Ts3y2lZvzQNiQ==}
+    dev: false
 
   /magic-string/0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}

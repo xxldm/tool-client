@@ -6,15 +6,26 @@
   "compounds": [
     {
       "name": "Debug App",
-      "preLaunchTask": "run dev",
       "configurations": [
-        "Debug Main Process",
-        "Debug Renderer Process"
+        "Debug Server",
+        "Debug Main Process"
       ],
       "presentation": {
         "hidden": false,
         "group": "debug",
         "order": 1
+      },
+      "stopAll": true
+    }, {
+      "name": "Debug Web",
+      "configurations": [
+        "Debug Server",
+        "Debug Chrome"
+      ],
+      "presentation": {
+        "hidden": false,
+        "group": "debug",
+        "order": 2
       },
       "stopAll": true
     }
@@ -29,7 +40,6 @@
         "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
       },
       "runtimeArgs": [
-        "--remote-debugging-port=9229",
         "."
       ],
       "presentation": {
@@ -38,26 +48,26 @@
       "env": {
         "npm_lifecycle_event": "dev"
       }
-    },
-    {
-      "name": "Debug Renderer Process",
-      "port": 9229,
-      "request": "attach",
-      "type": "chrome",
-      "presentation": {
-        "hidden": true
-      }
-    },
-    {
-      "preLaunchTask": "run dev",
-      "name": "Debug Web",
+    }, {
+      "name": "Debug Chrome",
       "request": "launch",
       "type": "chrome",
       "url": "http://localhost:8080",
       "presentation": {
+        "hidden": true
+      }
+    }, {
+      "name": "Debug Server",
+      "command": "nr dev",
+      "request": "launch",
+      "type": "node-terminal",
+      "env": {
+        "VSCODE_DEBUG": "true"
+      },
+      "presentation": {
         "hidden": false,
         "group": "debug",
-        "order": 2
+        "order": 3
       }
     }
   ]

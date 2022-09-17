@@ -1,14 +1,14 @@
 import type { CancellationToken, ProgressInfo, UpdateInfo } from "electron-updater";
 import { join } from "path";
 
-import { app, autoUpdater, ipcMain, isDebug, store, window } from ".";
+import { app, autoUpdater, env, ipcMain, store, window } from ".";
 
 /**
  * 初始化自动更新程序
  */
 export const initUpdater = () => {
   let cancellationToken: CancellationToken | undefined;
-  if (isDebug) {
+  if (env.DEV) {
     autoUpdater.updateConfigPath = join(app.getAppPath(), "app-update.yml");
   }
   // 关闭自动下载

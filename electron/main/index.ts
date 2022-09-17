@@ -39,9 +39,7 @@ if (!app.requestSingleInstanceLock()) {
   process.exit(0);
 }
 
-const isDebug = process.env.npm_lifecycle_event === "dev";
-
-if (isDebug) {
+if (env.DEV) {
   Object.defineProperty(app, "isPackaged", {
     get() {
       return true;
@@ -66,7 +64,7 @@ app.whenReady().then(() => {
   initIpc();
   createWindow();
   createTray();
-  if (isDebug) {
+  if (env.DEV) {
     createMenu();
   }
 });
@@ -110,4 +108,4 @@ function initAppStatus() {
   configProcess("themeSource", oldValue, store.get("themeSource", "auto")!);
 }
 
-export { app, ipcMain, window, store, platform, isDebug, autoUpdater, nativeTheme, env, screen };
+export { app, ipcMain, window, store, platform, autoUpdater, nativeTheme, env, screen };

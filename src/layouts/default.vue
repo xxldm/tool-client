@@ -1,5 +1,5 @@
 <template>
-  <el-container h-full>
+  <el-container>
     <el-header>
       <my-header />
     </el-header>

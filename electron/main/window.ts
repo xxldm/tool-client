@@ -1,7 +1,7 @@
 import { type BrowserWindowConstructorOptions, BrowserWindow } from "electron";
 import { join } from "path";
 
-import { app, env, isDebug, screen, store, window } from ".";
+import { app, env, screen, store, window } from ".";
 
 /**
  * 创建窗口
@@ -99,7 +99,7 @@ export async function createWindow() {
   // 绑定新窗口
   window.win = newWindow;
 
-  if (!isDebug && app.isPackaged) {
+  if (!env.DEV && app.isPackaged) {
     window.win.loadFile(join(app.getAppPath(), "dist/index.html"));
   } else {
     window.win.loadURL(env.VITE_DEV_SERVER_URL);

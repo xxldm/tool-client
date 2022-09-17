@@ -8,11 +8,6 @@
       i-carbon-sun
       dark:i-carbon-moon
       text-2xl
-      rel="noopener noreferrer"
     />
   </el-button>
 </template>
-
-<script lang="ts" setup>
-
-</script>

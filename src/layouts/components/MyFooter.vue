@@ -1,18 +1,23 @@
 <template>
   <div
-    text-xl
-    mt-6
-    inline-flex
-    gap-3
+    b-t-1
+    style="border-color: var(--el-border-color);"
   >
-    <el-link
-      i-carbon-logo-github
-      text-2xl
-      rel="noopener noreferrer"
-      href="https://github.com/xxldm/tool-client"
-      target="_blank"
-      title="GitHub"
-    />
+    <div
+      text-xl
+      mt-6
+      inline-flex
+      gap-3
+    >
+      <el-link
+        i-carbon-logo-github
+        text-2xl
+        rel="noopener noreferrer"
+        href="https://github.com/xxldm/tool-client"
+        target="_blank"
+        title="GitHub"
+      />
+    </div>
   </div>
 </template>
 

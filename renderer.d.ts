@@ -25,17 +25,17 @@ export interface Electron {
   closeApp(): Promise<void>;
 
   // 更新相关
-  getCurrentVersion(): string,
-  checkUpdate(): Promise<void>,
-  updateAvailable(listener: (event: IpcRendererEvent, updateInfo: UpdateInfo) => void): void,
-  updateNotAvailable(listener: (event: IpcRendererEvent) => void): void,
-  downloadUpdate(): Promise<void>,
-  cancelDownloadUpdate(): Promise<void>,
-  updateCancelled(listener: (event: IpcRendererEvent, updateInfo: UpdateInfo) => void): void,
-  downloadProgress(listener: (event: IpcRendererEvent, progressInfo: ProgressInfo) => void): void,
-  downloadDownloaded(listener: (event: IpcRendererEvent) => void): void,
-  quitAndInstall(): Promise<void>,
-  updateError(listener: (event: IpcRendererEvent, error: Error) => void): void,
+  getCurrentVersion(): string;
+  checkUpdate(): Promise<void>;
+  updateAvailable(listener: (event: IpcRendererEvent, updateInfo: UpdateInfo) => void): void;
+  updateNotAvailable(listener: (event: IpcRendererEvent) => void): void;
+  downloadUpdate(): Promise<void>;
+  cancelDownloadUpdate(): Promise<void>;
+  updateCancelled(listener: (event: IpcRendererEvent, updateInfo: UpdateInfo) => void): void;
+  downloadProgress(listener: (event: IpcRendererEvent, progressInfo: ProgressInfo) => void): void;
+  downloadDownloaded(listener: (event: IpcRendererEvent) => void): void;
+  quitAndInstall(): Promise<void>;
+  updateError(listener: (event: IpcRendererEvent, error: Error) => void): void
 }
 
 declare global {

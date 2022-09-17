@@ -1,4 +1,4 @@
-import dayjs from "dayjs";
+import dayjs, { type ManipulateType, type OpUnitType } from "dayjs";
 
 import { t } from "~/modules/i18n";
 
@@ -21,7 +21,7 @@ export function formatDiff(startTime: Date, endTime: Date, maxUnitCount?: number
  * 如果参数1是秒数 把秒转换成起止时间, 然后调用本身
  * 如果参数1是时间 格式化两个时间的秒数差
  * ps:不同的月份有不同的天数, 所有需要有一个时间作为基础, 不能直接格式化秒数
- * ps2:虽然无视<ps>,都按30天算,也没啥大问题就是了.
+ * ps2:虽然无视[ps]的内容,都按30天算,也没啥大问题就是了.
  * @param arg1 开始时间 或者 秒数
  * @param arg2 结束时间 或者 单位个数
  * @param maxUnitCount 单位个数
@@ -36,13 +36,13 @@ export function formatDiff(arg1: Date | number, arg2: Date | number | undefined,
     const endTime = startTime.add(arg1, "second");
     return formatDiff(startTime.toDate(), endTime.toDate(), arg2 as number | undefined, true);
   }
-  const units: ["year", "month", "day", "hour", "minute", "second"] = ["year", "month", "day", "hour", "minute", "second"];
+  const units: OpUnitType[] = ["year", "month", "week", "day", "hour", "minute", "second"];
   for (const unit of units) {
     const diff = dayjs(arg2).diff(arg1, unit);
     if (diff > 0) {
       let towUnitDiff = "";
       if (unit !== "second" && maxUnitCount > 1) {
-        const newStartTime = dayjs(arg1).add(diff, unit);
+        const newStartTime = dayjs(arg1).add(diff, unit as ManipulateType);
         towUnitDiff = formatDiff(newStartTime.toDate(), arg2 as Date, maxUnitCount - 1, false);
       }
 
