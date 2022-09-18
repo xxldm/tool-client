@@ -1,73 +1,30 @@
 <template>
-  <el-card>
-    <div
-      flex="~ gap-4 wrap"
-      items-center
+  <div
+    flex="~ gap-4"
+    items-center
+    style="width: max-content;"
+  >
+    <el-card
+      v-for="i of 10"
+      :key="i"
+      shadow="never"
     >
-      <el-card
-        shadow="never"
+      <div
+        flex="~ gap-4 col"
+        items-center
       >
-        <div
-          flex="~ gap-4 col"
-          items-center
-        >
-          <span text-8>国庆节</span> {{ formatDiff(now, new Date("2022-10-01")) }}
+        <div text-8>
+          国庆节
         </div>
-      </el-card>
-      <el-card
-        shadow="never"
-      >
-        <div
-          flex="~ gap-4 col"
-          items-center
-        >
-          <span text-8>国庆节</span> {{ formatDiff(now, new Date("2022-10-01")) }}
+        <div>
+          {{ formatDiff(now, new Date("2022-10-01")) }}
         </div>
-      </el-card>
-      <el-card
-        shadow="never"
-      >
-        <div
-          flex="~ gap-4 col"
-          items-center
-        >
-          <span text-8>国庆节</span> {{ formatDiff(now, new Date("2022-10-01")) }}
-        </div>
-      </el-card>
-      <el-card
-        shadow="never"
-      >
-        <div
-          flex="~ gap-4 col"
-          items-center
-        >
-          <span text-8>国庆节</span> {{ formatDiff(now, new Date("2022-10-01")) }}
-        </div>
-      </el-card>
-      <el-card
-        shadow="never"
-      >
-        <div
-          flex="~ gap-4 col"
-          items-center
-        >
-          <span text-8>国庆节</span> {{ formatDiff(now, new Date("2022-10-01")) }}
-        </div>
-      </el-card>
-      <el-card
-        shadow="never"
-      >
-        <div
-          flex="~ gap-4 col"
-          items-center
-        >
-          <span text-8>国庆节</span> {{ formatDiff(now, new Date("2022-10-01")) }}
-        </div>
-      </el-card>
-    </div>
-  </el-card>
+      </div>
+    </el-card>
+  </div>
 </template>
 
 <script lang="ts" setup>
+const prop = defineProps<{ mode: "horizontal" | "vertical" }>();
 const { t } = useI18n();
 </script>
