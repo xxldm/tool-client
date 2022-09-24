@@ -3,8 +3,6 @@ import {
   presetAttributify,
   presetIcons,
   presetUno,
-  transformerDirectives,
-  // transformerVariantGroup,
 } from "unocss";
 
 export default defineConfig({
@@ -21,9 +19,5 @@ export default defineConfig({
     ...Array.from({ length: 9 }, (_, i) => `[grid-rows~="${i + 1}"]`),
     ...Array.from({ length: 9 }, (_, i) => `[col-span~="${i + 1}"]`),
     ...Array.from({ length: 9 }, (_, i) => `[row-span~="${i + 1}"]`),
-  ],
-  transformers: [
-    transformerDirectives(),
-  //   transformerVariantGroup(),
   ],
 });

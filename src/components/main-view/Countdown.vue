@@ -1,8 +1,8 @@
 <template>
   <div
     flex="~ gap-4"
-    items-center
-    style="width: max-content;"
+    :class="mode === 'horizontal' ? 'items-center' : 'justify-center flex-col'"
+    :style="mode === 'horizontal' ? { width: 'max-content' } : {}"
   >
     <el-card
       v-for="i of 10"
@@ -17,7 +17,7 @@
           国庆节
         </div>
         <div>
-          {{ formatDiff(now, new Date("2022-10-01")) }}
+          {{ asd }}
         </div>
       </div>
     </el-card>
@@ -25,6 +25,8 @@
 </template>
 
 <script lang="ts" setup>
-const prop = defineProps<{ mode: "horizontal" | "vertical" }>();
+defineProps<{ mode: "horizontal" | "vertical" }>();
 const { t } = useI18n();
+
+const asd = computed(() => formatDiff(now.value, new Date("2022-10-01")));
 </script>

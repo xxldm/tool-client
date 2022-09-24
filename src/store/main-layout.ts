@@ -5,8 +5,11 @@ export interface ComponentLayout {
   componentName: string
   inBox: boolean
   mode: "horizontal" | "vertical"
+  col?: number
   colSpan: number
+  row?: number
   rowSpan: number
+  order: number
 }
 
 export interface MainLayout {
@@ -30,36 +33,66 @@ export const useMainLayoutStore = defineStore("main-layout", () => {
   const state = ref(initData());
   // 首页可用组件列表
   const viewComponents = computed(() => process(import.meta.glob("~/components/main-view/*.vue")));
+  // 所有可显示的设定组件占据空间
+  const occupyCount = ref(0);
+  // 布局配置
   const { row, col, gap } = toRefs(state.value);
-  // 是否编辑
-  const isEdit = computed(() => edit.value);
-  // 根据设定表格大小, 获取最后一个可显示的设定组件下标 和 所有可显示的设定组件占据空间
-  const showInfo = computed(() => {
-    // 加载内容下标
-    let index = 0;
-    // 已加载内容所占格数
-    let occupyCount = 0;
-    // 首页总格数
-    const allCount = state.value.col * state.value.row;
+  // 所有可显示的设定组件
+  const componentLayouts = computed(() => {
+    // 清空占用空间
+    occupyCount.value = 0;
+    // 给组件列表按用户设置order排序
+    state.value.componentLayouts.sort((cl, cl2) => cl.order - cl2.order);
+    // 清空,首页可显示的组件列表
+    const componentLayouts = [] as ComponentLayout[];
+    // 每行剩余空间
+    const colContentLengths = Array.from<number>({ length: row.value })
+      .reduce<number[]>((l) => {
+        l[l.length] = col.value;
+        return l;
+      }, []);
     // 加载内容
-    for (; index < state.value.componentLayouts.length; index++) {
-      // 待加载内容
-      const componentLayout = state.value.componentLayouts[index];
-      // 加载后所占格数
-      occupyCount += componentLayout.colSpan * componentLayout.rowSpan;
-      // 如果加载后所占格数 大于 总格数, 不加载剩下的内容
-      if (occupyCount > allCount) {
-        // 因为内容所需格数 大于 总格数, 所以去掉最后一个内容
-        index--;
-        break;
+    for (let index = 0; index < state.value.componentLayouts.length; index++) {
+      // 加载内容所在行
+      let row;
+      // 加载内容所在列
+      let col;
+      // 待加载对象
+      const cl = state.value.componentLayouts[index];
+      for (let i = 0; i < state.value.row; i++) {
+        // 判断哪一行放的下
+        if (colContentLengths[i] >= cl.colSpan) {
+          // 设置行
+          row = i;
+          // 设置列
+          col = state.value.row - colContentLengths[i];
+          // 如果跨行,减少所有行的剩余空间
+          for (let j = 0; j < cl.rowSpan; j++) {
+            // 减少行的剩余空间
+            colContentLengths[i + j] -= cl.colSpan;
+          }
+          // 如果行合并, 大于剩余行
+          if (cl.rowSpan > state.value.row - i) {
+            // 修改为剩余行
+            cl.rowSpan = state.value.row - i;
+          }
+          break;
+        }
+      }
+      // 行列不为空
+      if (row !== undefined && col !== undefined) {
+        // 保存信息
+        cl.col = col;
+        cl.row = row;
+        occupyCount.value += cl.colSpan * cl.rowSpan;
+        // 插入页面显示集合
+        componentLayouts.push(cl);
       }
     }
-    return { index, occupyCount };
+    return componentLayouts;
   });
-  // 所有可显示的设定组件占据空间
-  const occupyCount = computed(() => showInfo.value.occupyCount);
-  // 所有可显示的设定组件
-  const componentLayouts = computed(() => state.value.componentLayouts.slice(0, showInfo.value.index + 1));
+  // 是否编辑
+  const isEdit = computed(() => edit.value);
 
   // 根据组件名称获取组件对象
   function getComponentByName(name: string) {
@@ -86,6 +119,7 @@ export const useMainLayoutStore = defineStore("main-layout", () => {
       mode: "horizontal",
       colSpan: 1,
       rowSpan: 1,
+      order: state.value.componentLayouts.length + 1,
     });
   }
   // 从保存初始化配置

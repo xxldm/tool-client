@@ -2,6 +2,7 @@ import VueI18n from "@intlify/vite-plugin-vue-i18n";
 import Vue from "@vitejs/plugin-vue";
 import { rmSync } from "fs";
 import { resolve } from "path";
+import { transformerDirectives } from "unocss";
 import Unocss from "unocss/vite";
 import AutoImport from "unplugin-auto-import/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
@@ -18,6 +19,7 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
   }
   const env = loadEnv(mode, __dirname, ["VSCODE_"]);
   const isDebug = env.VSCODE_DEBUG !== undefined;
+  console.log("listening on port 8080");
   return {
     css: {
       preprocessorOptions: {
@@ -121,7 +123,11 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
 
       // https://github.com/antfu/unocss
       // see unocss.config.ts for config
-      Unocss(),
+      Unocss({
+        // https://github.com/unocss/unocss/issues/1570
+        // transformerDirectives 会导致 unocss vscode 插件 bug, unocss vscode 插件不会读取vite.config.ts, 所以放这边
+        transformers: [transformerDirectives()],
+      }),
 
       // https://github.com/antfu/vite-plugin-pwa
       VitePWA({

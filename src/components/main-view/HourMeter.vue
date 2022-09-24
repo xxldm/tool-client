@@ -12,7 +12,10 @@
       <div
         i-carbon-timer
       />{{ t("mainLayout.component.label.HourMeter") }}
-      <div i-carbon-barrier />
+      <div
+        v-if="mode === 'horizontal'"
+        i-carbon-barrier
+      />
     </div>
     <el-tag
       v-for="(hourMeter, index) in hourMeterStore.hourMeters"
@@ -67,6 +70,7 @@
 import song from "/闹钟.mp3";
 import type { HourMeter } from "~/store/hour-meter";
 
+defineProps<{ mode: "horizontal" | "vertical" }>();
 const { stop, sound } = $(useSound(song));
 const { t } = useI18n();
 

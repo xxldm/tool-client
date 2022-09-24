@@ -1,6 +1,6 @@
 <template>
   <div
-    ref="editBox"
+    ref="box"
     relative
     flex
     justify-center
@@ -15,6 +15,7 @@
         flex="~ col"
         :class="componentLayout.mode === 'horizontal' ? 'justify-center' : 'items-center'"
         overflow-hidden
+        :body-style="componentLayout.mode === 'horizontal' ? {} : { height: 'calc(100% - var(--el-card-padding) * 2)' }"
       >
         <el-scrollbar>
           <component
@@ -32,7 +33,9 @@
         :class="componentLayout.mode === 'horizontal' ? 'justify-center' : 'items-center'"
         overflow-hidden
       >
-        <div>
+        <div
+          :class="componentLayout.mode === 'horizontal' ? '' : 'h-full'"
+        >
           <el-scrollbar>
             <component
               :is="mainLayoutStore.getComponentByName(componentLayout.componentName)"
@@ -73,9 +76,9 @@
             v-model="componentLayout.rowSpan"
             size="small"
             step-strictly
-            w-18
+            w-22
             :min="1"
-            :max="9"
+            :max="mainLayoutStore.row - componentLayout.row!"
           />
         </div>
         <div>
@@ -91,7 +94,7 @@
             v-model="componentLayout.colSpan"
             size="small"
             step-strictly
-            w-18
+            w-22
             :min="1"
             :max="9"
           />
@@ -105,6 +108,18 @@
             active-value="horizontal"
             inactive-text="垂直"
             inactive-value="vertical"
+          />
+        </div>
+        <div>
+          排序:
+          <el-input-number
+            v-model="componentLayout.order"
+            size="small"
+            step-strictly
+            w-22
+            :min="1"
+            :max="81"
+            @change="onChangeOrder"
           />
         </div>
         <div
@@ -123,34 +138,52 @@
 </template>
 
 <script lang="ts" setup>
-import type { Ref } from "vue";
-
 const prop = defineProps<{
   componentLayoutIndex: number
-  box: any
+  box: HTMLElement
 }>();
 
 const { t } = useI18n();
 
-const editBox = ref();
+const box = ref<HTMLElement>();
 
 const mainLayoutStore = useMainLayoutStore();
 
 const componentLayout = computed(() => mainLayoutStore.componentLayouts[prop.componentLayoutIndex]);
 
 // 外层壳子
-const box = computed(() => prop.box);
+const mainBox = computed(() => prop.box);
 // 外层壳子边界信息
-const boxBounding = useElementBounding(box);
+const boxBounding = useElementBounding(mainBox);
 // 编辑浮层边界信息
-const editBoxBounding = useElementBounding(editBox);
+const editBoxBounding = useElementBounding(box);
 
-onMounted(() => {
-  // 新增动画需要0.5秒, 延迟0.5秒更新一次边界信息, 不更新会导致left值过小
-  const { isPending, start, stop } = useTimeoutFn(() => {
+const status = ref(false);
+
+useRafFn(() => {
+  if (box.value?.className) {
+    status.value = true;
+  } else if (status.value) {
     editBoxBounding.update();
-  }, 500);
+    status.value = false;
+  }
 });
+
+const onChangeOrder = (val: number | undefined, oldVal: number | undefined) => {
+  if (val === undefined || oldVal === undefined) {
+    return;
+  }
+  const findComponentLayout = mainLayoutStore.componentLayouts.filter(
+    c => componentLayout.value.time !== c.time && (val > oldVal ? val >= c.order && c.order >= oldVal : val <= c.order && c.order <= oldVal),
+  );
+  if (findComponentLayout.length > 0) {
+    if (val > oldVal) {
+      findComponentLayout.forEach(c => c.order--);
+    } else {
+      findComponentLayout.forEach(c => c.order++);
+    }
+  }
+};
 
 const position = computed(() => {
   let result = "";
@@ -173,22 +206,21 @@ const position = computed(() => {
 <style lang="scss" scoped>
 .editBox {
   >div {
-    min-width: 300px;
-    --at-apply: grid grid-gap-2 grid-cols-2;
+    --at-apply: grid grid-gap-2 grid-cols-2 min-w-75;
     >div {
       --at-apply: flex flex-gap-2 items-center;
     }
   }
+  .el-input-number--small {
+    --at-apply: lh-1
+  }
   border-color: var(--el-border-color);
-  border-radius: 4px;
-  width: calc(100% - 2px);
-  height: 100%;
-  --at-apply: z-1 transition-all-500 absolute bg-gray-800 opacity-10 b-1 overflow-hidden flex justify-center items-center select-none;
+  width: calc(100% - 0.125rem);
+  --at-apply: b-rd-1 b-1 h-full z-1 transition-all-500 absolute bg-gray-800 opacity-10 overflow-hidden flex justify-center items-center select-none;
 }
 .editBox:hover {
-  padding: 16px;
-  width: max(300px, calc(100% - 34px));
-  height: max(90px, calc(100% - 32px));
-  --at-apply: z-2 opacity-80;
+  width: max(18.75rem, calc(100% - 2.125rem));
+  height: max(5.625rem, calc(100% - 2rem));
+  --at-apply: z-2 p-4 opacity-80;
 }
 </style>

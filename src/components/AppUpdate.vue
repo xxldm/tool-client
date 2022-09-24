@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     v-model="useUpdateStore().showDialog"
-    width="550px"
+    width="35rem"
     :title="t('update.title')"
     center
     @open="open"
@@ -108,7 +108,7 @@
             class-name="p-0!"
           >
             <el-scrollbar
-              height="400px"
+              height="25rem"
               view-class="flex flex-gap-2 flex-col"
             >
               <el-card

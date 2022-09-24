@@ -8,7 +8,6 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppUpdate: typeof import('./src/components/AppUpdate.vue')['default']
-    Box: typeof import('./src/components/main-view/Box.vue')['default']
     Countdown: typeof import('./src/components/main-view/Countdown.vue')['default']
     DarkButton: typeof import('./src/layouts/components/shortcurs-button/DarkButton.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']

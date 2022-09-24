@@ -5,6 +5,7 @@
     name="main-layout-box"
     h-full
     grid
+    grid-flow-row-dense
     :grid-gap="mainLayoutStore.gap"
     :grid-cols="mainLayoutStore.col"
     :grid-rows="mainLayoutStore.row"
@@ -14,11 +15,13 @@
       :key="componentLayout.time"
       :component-layout-index="index"
       :box="box"
+      :style="{ order: componentLayout.order }"
     />
     <template v-if="mainLayoutStore.isEdit">
       <template v-if="boxCount > 0">
         <div
           class="add-button"
+          style="order: 98"
           @click="mainLayoutStore.add"
         >
           <div
@@ -32,6 +35,7 @@
         <div
           v-for="i of (boxCount - 1)"
           :key="i"
+          style="order: 99"
           border-width-1
           b-dashed
           class="blank-box"
