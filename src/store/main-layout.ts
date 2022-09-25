@@ -2,14 +2,14 @@ import type { Component } from "vue";
 
 export interface ComponentLayout {
   time: number
-  componentName: string
-  inBox: boolean
-  mode: "horizontal" | "vertical"
+  order: number
   col?: number
   colSpan: number
   row?: number
   rowSpan: number
-  order: number
+  componentName: string
+  inBox: boolean
+  mode: "horizontal" | "vertical"
 }
 
 export interface MainLayout {
@@ -41,8 +41,6 @@ export const useMainLayoutStore = defineStore("main-layout", () => {
   const componentLayouts = computed(() => {
     // 清空占用空间
     occupyCount.value = 0;
-    // 给组件列表按用户设置order排序
-    state.value.componentLayouts.sort((cl, cl2) => cl.order - cl2.order);
     // 清空,首页可显示的组件列表
     const componentLayouts = [] as ComponentLayout[];
     // 每行剩余空间
@@ -114,17 +112,20 @@ export const useMainLayoutStore = defineStore("main-layout", () => {
   function add() {
     state.value.componentLayouts.push({
       time: new Date().getTime(),
-      componentName: "",
-      inBox: true,
-      mode: "horizontal",
+      order: state.value.componentLayouts.length + 1,
       colSpan: 1,
       rowSpan: 1,
-      order: state.value.componentLayouts.length + 1,
+      componentName: "",
+      mode: "horizontal",
+      inBox: true,
     });
   }
   // 从保存初始化配置
   function initData() {
-    return JSON.parse(myStorage.getItem("main-layout") || "{}") as MainLayout;
+    const data = JSON.parse(myStorage.getItem("main-layout") || "{}") as MainLayout;
+    // 给组件列表按用户设置order排序
+    data.componentLayouts.sort((cl, cl2) => cl.order - cl2.order);
+    return data;
   }
   // 处理可用组件格式
   function process(data: Record<string, () => Promise<{ [p: string]: any }>>) {

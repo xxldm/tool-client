@@ -173,16 +173,23 @@ const onChangeOrder = (val: number | undefined, oldVal: number | undefined) => {
   if (val === undefined || oldVal === undefined) {
     return;
   }
-  const findComponentLayout = mainLayoutStore.componentLayouts.filter(
-    c => componentLayout.value.time !== c.time && (val > oldVal ? val >= c.order && c.order >= oldVal : val <= c.order && c.order <= oldVal),
-  );
-  if (findComponentLayout.length > 0) {
-    if (val > oldVal) {
-      findComponentLayout.forEach(c => c.order--);
-    } else {
-      findComponentLayout.forEach(c => c.order++);
-    }
+  let changeCLs;
+  let changeOrder = 0;
+  if (val > oldVal) {
+    // val 目标 order, -1 目标下标, +1 slice不包含结束下标
+    // oldVal 本体 order, -1 本体下标, +1 后一个
+    changeCLs = mainLayoutStore.componentLayouts.slice(oldVal, val);
+    changeOrder = -1;
+  } else {
+    // val 目标 order, -1 目标下标
+    // oldVal 本体 order, -1 本地下标, slice不包含结束下标, 所以不会包含本体
+    changeCLs = mainLayoutStore.componentLayouts.slice(val - 1, oldVal - 1);
+    changeOrder = 1;
   }
+  changeCLs.forEach((cl) => {
+    cl.order += changeOrder;
+  });
+  mainLayoutStore.componentLayouts.sort((cl, cl2) => cl.order - cl2.order);
 };
 
 const position = computed(() => {
@@ -215,8 +222,9 @@ const position = computed(() => {
     --at-apply: lh-1
   }
   border-color: var(--el-border-color);
+  background-color: var(--el-bg-color);
   width: calc(100% - 0.125rem);
-  --at-apply: b-rd-1 b-1 h-full z-1 transition-all-500 absolute bg-gray-800 opacity-10 overflow-hidden flex justify-center items-center select-none;
+  --at-apply: b-rd-1 b-1 h-full z-1 transition-all-500 absolute opacity-10 overflow-hidden flex justify-center items-center select-none;
 }
 .editBox:hover {
   width: max(18.75rem, calc(100% - 2.125rem));

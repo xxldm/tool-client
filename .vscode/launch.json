@@ -20,7 +20,7 @@
       "name": "Debug Web",
       "configurations": [
         "Debug Server",
-        "Debug Edge Devtools"
+        "Debug Browser"
       ],
       "presentation": {
         "hidden": false,
@@ -49,7 +49,7 @@
         "npm_lifecycle_event": "dev"
       }
     }, {
-      "name": "Debug Edge Devtools",
+      "name": "Debug Browser",
       "request": "launch",
       "type": "vscode-edge-devtools.debug",
       "url": "http://localhost:8080",
