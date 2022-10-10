@@ -173,23 +173,16 @@ const onChangeOrder = (val: number | undefined, oldVal: number | undefined) => {
   if (val === undefined || oldVal === undefined) {
     return;
   }
-  let changeCLs;
-  let changeOrder = 0;
   if (val > oldVal) {
-    // val 目标 order, -1 目标下标, +1 slice不包含结束下标
-    // oldVal 本体 order, -1 本体下标, +1 后一个
-    changeCLs = mainLayoutStore.componentLayouts.slice(oldVal, val);
-    changeOrder = -1;
+    // val 目标 order, -1 目标下标, +1 slice不包含结束下标, 最终 +0
+    // oldVal 本体 order, -1 本体下标, +1 后一个, 最终 +0
+    mainLayoutStore.order(oldVal, val, -1, componentLayout.value);
   } else {
-    // val 目标 order, -1 目标下标
-    // oldVal 本体 order, -1 本地下标, slice不包含结束下标, 所以不会包含本体
-    changeCLs = mainLayoutStore.componentLayouts.slice(val - 1, oldVal - 1);
-    changeOrder = 1;
+    // val 目标 order, -1 目标下标, 最终 -1
+    // oldVal 本体 order, -1 本地下标, slice不包含结束下标, 所以不会包含本体, 最终 -1
+    mainLayoutStore.order(val - 1, oldVal - 1, 1, componentLayout.value);
   }
-  changeCLs.forEach((cl) => {
-    cl.order += changeOrder;
-  });
-  mainLayoutStore.componentLayouts.sort((cl, cl2) => cl.order - cl2.order);
+  mainLayoutStore.sort();
 };
 
 const position = computed(() => {

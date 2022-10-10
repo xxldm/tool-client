@@ -28,5 +28,5 @@
 defineProps<{ mode: "horizontal" | "vertical" }>();
 const { t } = useI18n();
 
-const asd = computed(() => formatDiff(now.value, new Date("2022-10-01")));
+const asd = computed(() => formatDiff(now.value, new Date("2022-10-01 00:00:00")));
 </script>

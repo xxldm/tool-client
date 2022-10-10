@@ -37,6 +37,9 @@
       "request": "launch",
       "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
       "windows": {
+        "name": "Debug Main Process",
+        "type": "node",
+        "request": "launch",
         "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
       },
       "runtimeArgs": [
@@ -51,7 +54,7 @@
     }, {
       "name": "Debug Browser",
       "request": "launch",
-      "type": "vscode-edge-devtools.debug",
+      "type": "chrome",
       "url": "http://localhost:8080",
       "presentation": {
         "hidden": true
