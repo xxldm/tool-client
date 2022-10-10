@@ -19,7 +19,6 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
   }
   const env = loadEnv(mode, __dirname, ["VSCODE_"]);
   const isDebug = env.VSCODE_DEBUG !== undefined;
-  console.log("listening on port 8080");
   return {
     css: {
       preprocessorOptions: {
